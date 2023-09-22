@@ -1,0 +1,8 @@
+<source>
+  @type http
+  port 8080
+</source>
+
+<match **>
+   @type stdout
+</match>
