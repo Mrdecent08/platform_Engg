@@ -1,6 +1,6 @@
 <source>
   @type http
-  port 8082
+  port 8088
 </source>
 
 <match **>
