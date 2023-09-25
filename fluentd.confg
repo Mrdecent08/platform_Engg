@@ -1,8 +1,13 @@
 <source>
-  @type http
-  port 9090
+  @type file
+  path /home/ubuntu/srinivas/Jars/logs/userSevice.log
+  pos_file /home/ubuntu/srinivas/Jars/logs/userSevice.log.pos
+  tag userService
 </source>
 
-<match **>
-   @type stdout
+<match *userService*>
+   @type elasticsearch
+   hosts http://10.63.20.36:9200
+   index_name userService
+   type_name userService
 </match>
