@@ -1,13 +1,10 @@
 <source>
-  @type file
-  path /home/ubuntu/srinivas/Jars/logs/userSevice.log
-  pos_file /home/ubuntu/srinivas/Jars/logs/userSevice.log.pos
-  tag userService
+  @type forward
+  port 24224
 </source>
 
 <match *userService*>
-   @type elasticsearch
-   hosts http://10.63.20.36:9200
-   index_name userService
-   type_name userService
+   @type stdout
+   @type file
+   path /home/ubuntu/srinivas/Jar/
 </match>
