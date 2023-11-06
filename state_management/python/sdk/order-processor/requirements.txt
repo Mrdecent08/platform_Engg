@@ -1,2 +1,0 @@
-dapr
-typing-extensions
