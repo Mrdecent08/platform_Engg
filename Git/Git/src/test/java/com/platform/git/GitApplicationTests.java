@@ -1,10 +1,10 @@
-package com.example.demo;
+package com.platform.git;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class HelloWorldApplicationTests {
+class GitApplicationTests {
 
 	@Test
 	void contextLoads() {
