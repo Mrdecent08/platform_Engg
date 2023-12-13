@@ -5,7 +5,6 @@ import java.util.Base64;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
@@ -14,10 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
+
 
 @RestController
 @RequestMapping("/logging")
@@ -78,13 +80,27 @@ public class loggingMs {
 	@PostMapping("/pushLog")
 	public String postLog() {
 		String gateWayUrl = "http://aa7eabfa05ed24fc3ad6d2c4007e805c-1204085443.us-east-1.elb.amazonaws.com";
-		HttpHeaders headers = new HttpHeaders();
-		headers.set("host", "efk.example.com");
-		headers.setContentType(MediaType.APPLICATION_JSON);
+		String endpoint = "/efk/pushLog";
+		String url = gateWayUrl+endpoint;
+		
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.set("host", "efk.example.com");
+//		headers.setContentType(MediaType.APPLICATION_JSON);
 		String requestBody = "{\"message\":\"Sample Log\"}";
-		HttpEntity<String> requestEntity = new HttpEntity<>(requestBody, headers);
-		ResponseEntity<String> responseEntity = restTemplate.exchange(gateWayUrl + "/efk/pushLog/", HttpMethod.POST,
-				requestEntity, String.class);
-		return responseEntity.getBody();
+//		HttpEntity<String> requestEntity = new HttpEntity<>(requestBody, headers);
+//		ResponseEntity<String> responseEntity = restTemplate.exchange(gateWayUrl + "/efk/pushLog/", HttpMethod.POST,
+//				requestEntity, String.class);
+		WebClient webClient = WebClient.builder().baseUrl(url).build();
+		webClient.post()
+					.uri(uriBuilder -> uriBuilder.path(endpoint).build())
+					.header("host","efk.example.com")
+					.header("Content-Type","application/json")
+					.body(BodyInserters.fromValue(requestBody))
+					.retrieve()
+					.bodyToMono(String.class)
+					.subscribe(responseBody -> {
+						System.out.println(responseBody);
+					});
+		return "";
 	}
 }
