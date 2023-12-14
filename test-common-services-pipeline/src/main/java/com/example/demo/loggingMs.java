@@ -1,11 +1,11 @@
 package com.example.demo;
 
+import java.io.IOException;
 import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
@@ -18,6 +18,12 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 
 
 @RestController
@@ -41,7 +47,7 @@ public class loggingMs {
 	RestTemplate restTemplate = new RestTemplate();
 
 	@PostMapping("/deploy-efk")
-	public String triggerPipeline(JsonNode body) throws JsonMappingException, JsonProcessingException {
+	public String triggerPipeline() throws JsonMappingException, JsonProcessingException {
 
 		String authStr = username + ":" + password;
 		String base64Creds = Base64.getEncoder().encodeToString(authStr.getBytes());
@@ -66,7 +72,7 @@ public class loggingMs {
 		responsecode = response.getStatusCode().is2xxSuccessful();
 		if (responsecode) {
 			System.out.println("Job triggered successfully");
-			return "The job" + body.get("job").toString() + "has been triggered";
+			return "The job has been triggered";
 		}
 
 		else {
@@ -77,18 +83,21 @@ public class loggingMs {
 	}
 
 	@PostMapping("/pushLog")
-	public String postLog() {
+	public String postLog() throws IOException {
 		// String gateWayUrl = "http://aa7eabfa05ed24fc3ad6d2c4007e805c-1204085443.us-east-1.elb.amazonaws.com";
 		
-		String gateWayUrl = "http://10.63.35.108:31169";
-		
-		HttpHeaders headers = new HttpHeaders();
-		headers.set("host", "efk.example.com");
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		String requestBody = "{\"message\":\"Sample Log\"}";
-		HttpEntity<String> requestEntity = new HttpEntity<>(requestBody, headers);
-		ResponseEntity<String> responseEntity = restTemplate.exchange(gateWayUrl + "/efk/pushLog/", HttpMethod.POST,requestEntity, String.class);
-		
-		return responseEntity.getBody();
+		okhttp3.OkHttpClient client = new OkHttpClient().newBuilder().build();
+		//MediaType mediaType = MediaType.parse("application/json");
+		okhttp3.MediaType mediaType = okhttp3.MediaType.parse("application/json");
+		RequestBody body = RequestBody.create("{\n    \"message\":\"sample message 2\"\n}",mediaType);
+		Request request = new Request.Builder()
+		  .url("http://aa7eabfa05ed24fc3ad6d2c4007e805c-1204085443.us-east-1.elb.amazonaws.com/efk/pushLog/")
+		  .method("POST", body)
+		  .addHeader("host", "efk.example.com")
+		  .addHeader("Content-Type", "application/json")
+		  .build();
+		Response response = client.newCall(request).execute();
+		System.out.print(response.body().string());
+		return response.body().string();
 	}
 }
