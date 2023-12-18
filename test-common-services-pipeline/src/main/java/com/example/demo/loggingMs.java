@@ -12,6 +12,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -83,21 +84,29 @@ public class loggingMs {
 	}
 
 	@PostMapping("/pushLog")
-	public String postLog() throws IOException {
-		// String gateWayUrl = "http://aa7eabfa05ed24fc3ad6d2c4007e805c-1204085443.us-east-1.elb.amazonaws.com";
+	public String postLog(@RequestParam String endpoint,@org.springframework.web.bind.annotation.RequestBody JsonNode data) throws IOException {
 		
-		okhttp3.OkHttpClient client = new OkHttpClient().newBuilder().build();
-		//MediaType mediaType = MediaType.parse("application/json");
-		okhttp3.MediaType mediaType = okhttp3.MediaType.parse("application/json");
-		RequestBody body = RequestBody.create("{\n    \"message\":\"sample message 2\"\n}",mediaType);
-		Request request = new Request.Builder()
-		  .url("http://aa7eabfa05ed24fc3ad6d2c4007e805c-1204085443.us-east-1.elb.amazonaws.com/efk/pushLog/")
-		  .method("POST", body)
-		  .addHeader("host", "efk.example.com")
-		  .addHeader("Content-Type", "application/json")
-		  .build();
-		Response response = client.newCall(request).execute();
-		System.out.print(response.body().string());
-		return response.body().string();
+		try {
+			okhttp3.OkHttpClient client = new OkHttpClient().newBuilder().build();
+			okhttp3.MediaType mediaType = okhttp3.MediaType.parse("application/json");
+			RequestBody body = RequestBody.create("{\n    \"message\":\" "+ data.get("message").asText() +" \"\n}",mediaType);
+			Request request = new Request.Builder()
+			  .url("http://aa7eabfa05ed24fc3ad6d2c4007e805c-1204085443.us-east-1.elb.amazonaws.com"+endpoint)
+			  .method("POST", body)
+			  .addHeader("host", "efk.example.com")
+			  .addHeader("Content-Type", "application/json")
+			  .build();
+			Response response = client.newCall(request).execute();
+			 if(response.code()==200){
+                 return response.body().string()+" ";
+	         }
+	         else{
+	             throw new NoMethodFoundException("Method have been updated in the latest version");
+	         }
+		}
+		catch(Exception ex) {
+			return "Method have been updated in the latest version";
+		}
+		
 	}
 }
