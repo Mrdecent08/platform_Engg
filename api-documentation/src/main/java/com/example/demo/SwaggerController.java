@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -14,10 +15,11 @@ public class SwaggerController {
 	@GetMapping("/efk-logging")
 	public String swaggerefk() throws UnknownHostException{
 		
-		@Value("${efk-ms-service.host}")
-		String hostname ;
+		String serviceHostname = "efk-ms-service.efk.svc.cluster.local";
+		InetAddress inetAddress = InetAddress.getByName(serviceHostname);
+		String resolvedHostname = inetAddress.getHostName();
 		
 		String port="31597";
-		return "http://"+hostname+":"+port+"/swagger-ui/index.html";
+		return "http://"+resolvedHostname+":"+port+"/swagger-ui/index.html";
 	}
 }
