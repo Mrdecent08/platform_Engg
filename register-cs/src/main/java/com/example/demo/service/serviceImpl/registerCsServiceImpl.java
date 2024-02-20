@@ -1,0 +1,33 @@
+package com.example.demo.service.serviceImpl;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo.entity.registerDetails;
+import com.example.demo.repository.registerDetailsRepository;
+import com.example.demo.service.registerCsService;
+
+@Service
+public class registerCsServiceImpl implements registerCsService {
+
+	private registerDetailsRepository registerRepository;
+
+	public registerCsServiceImpl(registerDetailsRepository registerRepository) {
+		super();
+		this.registerRepository = registerRepository;
+	}
+
+	@Override
+	public String createApplication(registerDetails details) {
+		registerRepository.save(details);
+		return "Application Added Successfully";
+	}
+
+	@Override
+	public Object getAllApplicationsDetails() {
+		// TODO Auto-generated method stub
+		return registerRepository.findAll();
+	}
+	
+	
+
+}

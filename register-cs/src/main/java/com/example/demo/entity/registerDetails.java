@@ -1,20 +1,25 @@
 package com.example.demo.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
 
-import org.springframework.data.annotation.Id;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="registerCs")
 public class registerDetails {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 	
 	private String applicationName;
 	
-	private String services;
+	private List<String> services;
 	
 	private String startDate;
 	
@@ -22,7 +27,7 @@ public class registerDetails {
 	
 	private String token;
 
-	public registerDetails(int id, String applicationName, String services, String startDate, String endDate) {
+	public registerDetails(int id, String applicationName, List<String> services, String startDate, String endDate) {
 		super();
 		this.id = id;
 		this.applicationName = applicationName;
@@ -31,7 +36,7 @@ public class registerDetails {
 		this.endDate = endDate;
 	}
 
-	public registerDetails(int id, String applicationName, String services, String startDate, String endDate,
+	public registerDetails(int id, String applicationName, List<String> services, String startDate, String endDate,
 			String token) {
 		super();
 		this.id = id;
@@ -58,11 +63,11 @@ public class registerDetails {
 		this.applicationName = applicationName;
 	}
 
-	public String getServices() {
+	public List<String> getServices() {
 		return services;
 	}
 
-	public void setServices(String services) {
+	public void setServices(List<String> services) {
 		this.services = services;
 	}
 
@@ -95,8 +100,7 @@ public class registerDetails {
 		return "registerDetails [id=" + id + ", applicationName=" + applicationName + ", services=" + services
 				+ ", startDate=" + startDate + ", endDate=" + endDate + ", token=" + token + "]";
 	}
-	
-	
+
 	
 	
 }
