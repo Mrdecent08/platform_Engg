@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -22,9 +23,9 @@ public class registerDetails {
 		
 	private String[] services;
 	
-	private String startDate;
+	private Date startDate;
 	
-	private String endDate;
+	private Date endDate;
 	
 	private String token;
 
@@ -32,7 +33,7 @@ public class registerDetails {
 		super();
 	}
 
-	public registerDetails(String applicationName, String[] services, String startDate, String endDate) {
+	public registerDetails(String applicationName, String[] services, Date startDate, Date endDate) {
 		super();
 		this.applicationName = applicationName;
 		this.services = services;
@@ -40,8 +41,7 @@ public class registerDetails {
 		this.endDate = endDate;
 	}
 
-	public registerDetails(String applicationName, String[] services, String startDate, String endDate,
-			String token) {
+	public registerDetails(String applicationName, String[] services, Date startDate, Date endDate, String token) {
 		super();
 		this.applicationName = applicationName;
 		this.services = services;
@@ -74,19 +74,19 @@ public class registerDetails {
 		this.services = services;
 	}
 
-	public String getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(String startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
-	public String getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(String endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
