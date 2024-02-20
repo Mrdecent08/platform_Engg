@@ -1,5 +1,7 @@
 package com.example.demo.service.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.registerDetails;
@@ -23,7 +25,7 @@ public class registerCsServiceImpl implements registerCsService {
 	}
 
 	@Override
-	public Object getAllApplicationsDetails() {
+	public List<registerDetails> getAllApplicationsDetails() {
 		// TODO Auto-generated method stub
 		return registerRepository.findAll();
 	}

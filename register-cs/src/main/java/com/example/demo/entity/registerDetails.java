@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -18,8 +19,8 @@ public class registerDetails {
 	private int id;
 	
 	private String applicationName;
-	
-	private List<String> services;
+		
+	private String[] services;
 	
 	private String startDate;
 	
@@ -27,19 +28,21 @@ public class registerDetails {
 	
 	private String token;
 
-	public registerDetails(int id, String applicationName, List<String> services, String startDate, String endDate) {
+	public registerDetails() {
 		super();
-		this.id = id;
+	}
+
+	public registerDetails(String applicationName, String[] services, String startDate, String endDate) {
+		super();
 		this.applicationName = applicationName;
 		this.services = services;
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
 
-	public registerDetails(int id, String applicationName, List<String> services, String startDate, String endDate,
+	public registerDetails(String applicationName, String[] services, String startDate, String endDate,
 			String token) {
 		super();
-		this.id = id;
 		this.applicationName = applicationName;
 		this.services = services;
 		this.startDate = startDate;
@@ -63,11 +66,11 @@ public class registerDetails {
 		this.applicationName = applicationName;
 	}
 
-	public List<String> getServices() {
+	public String[] getServices() {
 		return services;
 	}
 
-	public void setServices(List<String> services) {
+	public void setServices(String[] services) {
 		this.services = services;
 	}
 
@@ -97,10 +100,10 @@ public class registerDetails {
 
 	@Override
 	public String toString() {
-		return "registerDetails [id=" + id + ", applicationName=" + applicationName + ", services=" + services
-				+ ", startDate=" + startDate + ", endDate=" + endDate + ", token=" + token + "]";
+		return "registerDetails [id=" + id + ", applicationName=" + applicationName + ", services="
+				+ Arrays.toString(services) + ", startDate=" + startDate + ", endDate=" + endDate + ", token=" + token
+				+ "]";
 	}
 
-	
 	
 }
