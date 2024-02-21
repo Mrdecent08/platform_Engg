@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,9 +28,9 @@ public class registerDetails {
 	@CollectionTable(name="cs",joinColumns = @JoinColumn(name="id"))
 	private List<String> services;
 	
-	private String startDate;
+	private LocalDate startDate;
 	
-	private String endDate;
+	private LocalDate endDate;
 	
 	private String token;
 
@@ -37,7 +38,7 @@ public class registerDetails {
 		super();
 	}
 
-	public registerDetails(String applicationName, String[] services, String startDate, String endDate) {
+	public registerDetails(String applicationName, List<String> services, LocalDate startDate, LocalDate endDate) {
 		super();
 		this.applicationName = applicationName;
 		this.services = services;
@@ -45,7 +46,8 @@ public class registerDetails {
 		this.endDate = endDate;
 	}
 
-	public registerDetails(String applicationName, String[] services, String startDate, String endDate, String token) {
+	public registerDetails(String applicationName, List<String> services, LocalDate startDate, LocalDate endDate,
+			String token) {
 		super();
 		this.applicationName = applicationName;
 		this.services = services;
@@ -70,27 +72,27 @@ public class registerDetails {
 		this.applicationName = applicationName;
 	}
 
-	public String[] getServices() {
+	public List<String> getServices() {
 		return services;
 	}
 
-	public void setServices(String[] services) {
+	public void setServices(List<String> services) {
 		this.services = services;
 	}
 
-	public String getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(String startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
-	public String getEndDate() {
+	public LocalDate getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(String endDate) {
+	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
 
@@ -104,12 +106,9 @@ public class registerDetails {
 
 	@Override
 	public String toString() {
-		return "registerDetails [id=" + id + ", applicationName=" + applicationName + ", services="
-				+ Arrays.toString(services) + ", startDate=" + startDate + ", endDate=" + endDate + ", token=" + token
-				+ "]";
+		return "registerDetails [id=" + id + ", applicationName=" + applicationName + ", services=" + services
+				+ ", startDate=" + startDate + ", endDate=" + endDate + ", token=" + token + "]";
 	}
-
-
 
 	
 }
