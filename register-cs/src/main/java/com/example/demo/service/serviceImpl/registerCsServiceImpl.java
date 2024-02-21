@@ -27,6 +27,7 @@ public class registerCsServiceImpl implements registerCsService {
 	@Override
 	public List<registerDetails> getAllApplicationsDetails() {
 		// TODO Auto-generated method stub
+		System.out.print(registerRepository.findById(1));
 		return registerRepository.findAll();
 	}
 	

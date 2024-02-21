@@ -2,13 +2,15 @@ package com.example.demo.entity;
 
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -21,11 +23,13 @@ public class registerDetails {
 	
 	private String applicationName;
 		
-	private String[] services;
+	@ElementCollection
+	@CollectionTable(name="cs",joinColumns = @JoinColumn(name="id"))
+	private List<String> services;
 	
-	private Date startDate;
+	private String startDate;
 	
-	private Date endDate;
+	private String endDate;
 	
 	private String token;
 
@@ -33,7 +37,7 @@ public class registerDetails {
 		super();
 	}
 
-	public registerDetails(String applicationName, String[] services, Date startDate, Date endDate) {
+	public registerDetails(String applicationName, String[] services, String startDate, String endDate) {
 		super();
 		this.applicationName = applicationName;
 		this.services = services;
@@ -41,7 +45,7 @@ public class registerDetails {
 		this.endDate = endDate;
 	}
 
-	public registerDetails(String applicationName, String[] services, Date startDate, Date endDate, String token) {
+	public registerDetails(String applicationName, String[] services, String startDate, String endDate, String token) {
 		super();
 		this.applicationName = applicationName;
 		this.services = services;
@@ -74,19 +78,19 @@ public class registerDetails {
 		this.services = services;
 	}
 
-	public Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 
@@ -104,6 +108,8 @@ public class registerDetails {
 				+ Arrays.toString(services) + ", startDate=" + startDate + ", endDate=" + endDate + ", token=" + token
 				+ "]";
 	}
+
+
 
 	
 }
