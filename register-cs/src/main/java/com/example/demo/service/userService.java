@@ -2,9 +2,14 @@ package com.example.demo.service;
 
 import java.io.IOException;
 
+import com.example.demo.entity.registerDetails;
+
 public interface userService {
 
-	void generateToken() throws IOException;
+	String generateToken() throws IOException;
+
+	void createUser(registerDetails details,String token) throws IOException;
+
 
 
 }

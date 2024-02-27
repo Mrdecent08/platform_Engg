@@ -20,17 +20,14 @@ import com.example.demo.service.userService;
 public class resgisterCsController {
 
 	private registerCsService registerService;
-	private userService userService;
 	
 	public resgisterCsController(registerCsService registerService,userService userService) {
 		super();
 		this.registerService = registerService;
-		this.userService = userService;
 	}
 	
 	@PostMapping("/addApplication")
 	public String createApplication(@RequestBody registerDetails details) throws IOException {
-		userService.generateToken();
 		return registerService.createApplication(details);
 	}
 	
