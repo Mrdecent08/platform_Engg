@@ -8,6 +8,7 @@ import com.example.demo.entity.registerDetails;
 import com.example.demo.service.userService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -37,7 +38,9 @@ public class userServiceImpl implements userService {
 		OkHttpClient client = new OkHttpClient().newBuilder()
 				  .build();
 				MediaType mediaType = MediaType.parse("application/json");
-				RequestBody body = RequestBody.create("{\n    \"username\": \" "+ details.getApplicationName() + " \",\n    \"enabled\": true,\n    \"attributes\": {\n      \"microservices\": { \"services\" : "+ details.getServices() +" } ,\n      \"expiration_time\": \"2024-12-31T23:59:59Z\"\n    },\n    \"credentials\": [\n      {\n        \"type\": \"password\",\n        \"value\": \" "+ details.getApplicationName() + "\",\n        \"temporary\": false\n      }\n    ]\n  }",mediaType);
+		        Gson gson = new Gson();
+		        String json = gson.toJson(details.getServices());
+		        RequestBody body = RequestBody.create("{\n    \"username\": \" "+ details.getApplicationName() + " \",\n    \"enabled\": true,\n    \"attributes\": {\n      \"microservices\":  "+ json +" ,\n      \"expiration_time\": \"2024-12-31T23:59:59Z\"\n    },\n    \"credentials\": [\n      {\n        \"type\": \"password\",\n        \"value\": \" "+ details.getApplicationName() + "\",\n        \"temporary\": false\n      }\n    ]\n  }",mediaType);
 				Request request = new Request.Builder()
 				  .url("http://10.63.20.62:31537/admin/realms/AuthTest/users")
 				  .method("POST", body)
