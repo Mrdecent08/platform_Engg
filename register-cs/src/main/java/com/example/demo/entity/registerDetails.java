@@ -22,6 +22,8 @@ public class registerDetails {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 	
+	private String projectName;
+	
 	private String applicationName;
 		
 	@ElementCollection
@@ -38,17 +40,20 @@ public class registerDetails {
 		super();
 	}
 
-	public registerDetails(String applicationName, List<String> services, LocalDate startDate, LocalDate endDate) {
+	public registerDetails(String projectName, String applicationName, List<String> services, LocalDate startDate,
+			LocalDate endDate) {
 		super();
+		this.projectName = projectName;
 		this.applicationName = applicationName;
 		this.services = services;
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
 
-	public registerDetails(String applicationName, List<String> services, LocalDate startDate, LocalDate endDate,
-			String token) {
+	public registerDetails(String projectName, String applicationName, List<String> services, LocalDate startDate,
+			LocalDate endDate, String token) {
 		super();
+		this.projectName = projectName;
 		this.applicationName = applicationName;
 		this.services = services;
 		this.startDate = startDate;
@@ -62,6 +67,14 @@ public class registerDetails {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getProjectName() {
+		return projectName;
+	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
 	}
 
 	public String getApplicationName() {
@@ -106,9 +119,10 @@ public class registerDetails {
 
 	@Override
 	public String toString() {
-		return "registerDetails [id=" + id + ", applicationName=" + applicationName + ", services=" + services
-				+ ", startDate=" + startDate + ", endDate=" + endDate + ", token=" + token + "]";
+		return "registerDetails [id=" + id + ", projectName=" + projectName + ", applicationName=" + applicationName
+				+ ", services=" + services + ", startDate=" + startDate + ", endDate=" + endDate + ", token=" + token
+				+ "]";
 	}
 
-	
+		
 }

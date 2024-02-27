@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,20 +14,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.registerDetails;
 import com.example.demo.service.registerCsService;
+import com.example.demo.service.userService;
 
 @RestController
 public class resgisterCsController {
 
 	private registerCsService registerService;
-
-	public resgisterCsController(registerCsService registerService) {
+	private userService userService;
+	
+	public resgisterCsController(registerCsService registerService,userService userService) {
 		super();
 		this.registerService = registerService;
+		this.userService = userService;
 	}
 	
 	@PostMapping("/addApplication")
-	public String createApplication(@RequestBody registerDetails details) {
-		details.setToken("token");
+	public String createApplication(@RequestBody registerDetails details) throws IOException {
+		userService.generateToken();
 		return registerService.createApplication(details);
 	}
 	
