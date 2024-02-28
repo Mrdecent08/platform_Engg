@@ -2,7 +2,6 @@ package com.example.demo.entity;
 
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class registerDetails {
 		
 	@ElementCollection
 	@CollectionTable(name="cs",joinColumns = @JoinColumn(name="id"))
-	private ArrayList<String> services;
+	private List<String> services;
 	
 	private LocalDate startDate;
 	
@@ -41,7 +40,7 @@ public class registerDetails {
 		super();
 	}
 
-	public registerDetails(String projectName, String applicationName, ArrayList<String> services, LocalDate startDate,
+	public registerDetails(String projectName, String applicationName, List<String> services, LocalDate startDate,
 			LocalDate endDate) {
 		super();
 		this.projectName = projectName;
@@ -51,7 +50,7 @@ public class registerDetails {
 		this.endDate = endDate;
 	}
 
-	public registerDetails(String projectName, String applicationName, ArrayList<String> services, LocalDate startDate,
+	public registerDetails(String projectName, String applicationName, List<String> services, LocalDate startDate,
 			LocalDate endDate, String token) {
 		super();
 		this.projectName = projectName;
@@ -86,11 +85,11 @@ public class registerDetails {
 		this.applicationName = applicationName;
 	}
 
-	public ArrayList<String> getServices() {
+	public List<String> getServices() {
 		return services;
 	}
 
-	public void setServices(ArrayList<String> services) {
+	public void setServices(List<String> services) {
 		this.services = services;
 	}
 
@@ -125,6 +124,5 @@ public class registerDetails {
 				+ "]";
 	}
 
-	
 		
 }
