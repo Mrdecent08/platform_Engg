@@ -11,13 +11,20 @@ import com.example.demo.exception.NoApplicationFoundException;
 import com.example.demo.repository.registerDetailsRepository;
 import com.example.demo.service.registerCsService;
 import com.example.demo.service.userService;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 @Service
 public class registerCsServiceImpl implements registerCsService {
 
 	private registerDetailsRepository registerRepository;
 	private userService userService;
-
 
 	public registerCsServiceImpl(registerDetailsRepository registerRepository, userService userService) {
 		super();
@@ -28,10 +35,26 @@ public class registerCsServiceImpl implements registerCsService {
 
 	@Override
 	public String createApplication(registerDetails details) throws IOException {
-		registerRepository.save(details);
 		String token = userService.generateToken();
-		userService.createUser(details,token);
+		userService.createUser(details, token);
+		details.setToken(generateTokenForApplication(details.getApplicationName()));
+		registerRepository.save(details);
 		return "Application Added Successfully";
+	}
+
+	private String generateTokenForApplication(String applicationName) throws IOException {
+		OkHttpClient client = new OkHttpClient().newBuilder().build();
+		MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+		RequestBody body = RequestBody.create(
+				"client_id=istio&username=" + applicationName + "&password=" + applicationName + "&grant_type=password",
+				mediaType);
+		Request request = new Request.Builder()
+				.url("http://10.63.33.181:31537/realms/AuthTest/protocol/openid-connect/token").method("POST", body)
+				.addHeader("Content-Type", "application/x-www-form-urlencoded").build();
+		Response response = client.newCall(request).execute();
+		ObjectMapper mapper = new ObjectMapper();
+		JsonNode objectNode = mapper.readTree(response.body().string());
+		return objectNode.get("access_token").asText();
 	}
 
 	@Override
@@ -43,14 +66,13 @@ public class registerCsServiceImpl implements registerCsService {
 	public String updateApplication(registerDetails details) {
 		int id = details.getId();
 		Optional<registerDetails> detail = registerRepository.findById(id);
-		if(detail.isEmpty()) {
-			throw new NoApplicationFoundException("No Application with ID: "+id);
-		}
-		else {
+		if (detail.isEmpty()) {
+			throw new NoApplicationFoundException("No Application with ID: " + id);
+		} else {
 			registerRepository.save(details);
 			return "Details Are Updated Successfully";
 		}
-		
+
 	}
 
 	@Override
@@ -62,14 +84,11 @@ public class registerCsServiceImpl implements registerCsService {
 	@Override
 	public Optional<registerDetails> getAllApplicationsDetailsById(int id) {
 		Optional<registerDetails> details = registerRepository.findById(id);
-		if(details.isEmpty()) {
-			throw new NoApplicationFoundException("No Application with ID: "+id);
-		}
-		else {
+		if (details.isEmpty()) {
+			throw new NoApplicationFoundException("No Application with ID: " + id);
+		} else {
 			return details;
 		}
 	}
-	
-	
 
 }

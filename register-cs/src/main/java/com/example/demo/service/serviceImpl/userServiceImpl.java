@@ -39,9 +39,9 @@ public class userServiceImpl implements userService {
 				  .build();
 				MediaType mediaType = MediaType.parse("application/json");
 				StringBuilder sb = new StringBuilder();
-				sb.append("{ \"services\" : [");
+				sb.append("{ \\\"services\\\" : [");
 				for(String i:details.getServices()){
-				    sb.append("\""+ i +"\",");
+				    sb.append("\\\""+ i +"\\\",");
 				}
 				sb.deleteCharAt(sb.length() - 1);
 				sb.append("] }");
