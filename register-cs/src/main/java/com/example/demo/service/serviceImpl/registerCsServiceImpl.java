@@ -39,7 +39,7 @@ public class registerCsServiceImpl implements registerCsService {
 		userService.createUser(details, token);
 		details.setToken(generateTokenForApplication(details.getApplicationName()));
 		registerRepository.save(details);
-		return "Application Added Successfully";
+		return registerRepository.findTokenByApplicationName(details.getApplicationName());
 	}
 
 	private String generateTokenForApplication(String applicationName) throws IOException {
