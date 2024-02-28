@@ -38,18 +38,16 @@ public class userServiceImpl implements userService {
 		OkHttpClient client = new OkHttpClient().newBuilder()
 				  .build();
 				MediaType mediaType = MediaType.parse("application/json");
-		        Gson gson = new Gson();
-		        String json = gson.toJson(details.getServices());
-		        System.out.println(json);
-		        RequestBody body = RequestBody.create("{\n    \"username\": \" "+ details.getApplicationName() + " \",\n    \"enabled\": true,\n    \"attributes\": {\n      \"microservices\":  "+ json +" ,\n      \"expiration_time\": \"2024-12-31T23:59:59Z\"\n    },\n    \"credentials\": [\n      {\n        \"type\": \"password\",\n        \"value\": \" "+ details.getApplicationName() + "\",\n        \"temporary\": false\n      }\n    ]\n  }",mediaType);
-				Request request = new Request.Builder()
+				String str = "{\n    \"username\": \""+ details.getApplicationName() + "\",\n    \"enabled\": true,\n    \"attributes\": {\n      \"microservices\": \""+ details.getServices() +"\" ,\n      \"expiration_time\": \"2024-12-31T23:59:59Z\"\n    },\n    \"credentials\": [\n      {\n        \"type\": \"password\",\n        \"value\": \""+ details.getApplicationName() + "\",\n        \"temporary\": false\n      }\n    ]\n  }";
+				System.out.println(str);
+		        RequestBody body = RequestBody.create("{\n    \"username\": \""+ details.getApplicationName() + "\",\n    \"enabled\": true,\n    \"attributes\": {\n      \"microservices\": \""+ details.getServices() +"\" ,\n      \"expiration_time\": \"2024-12-31T23:59:59Z\"\n    },\n    \"credentials\": [\n      {\n        \"type\": \"password\",\n        \"value\": \""+ details.getApplicationName() + "\",\n        \"temporary\": false\n      }\n    ]\n  }",mediaType);
+		        Request request = new Request.Builder()
 				  .url("http://10.63.20.62:31537/admin/realms/AuthTest/users")
 				  .method("POST", body)
 				  .addHeader("Content-Type", "application/json")
 				  .addHeader("Authorization", "Bearer "+ token)
 				  .build();
 				Response response = client.newCall(request).execute();
-				System.out.println(body);
 				System.out.println("User Created Successfully !!" + response.body().string());
 		
 	}
