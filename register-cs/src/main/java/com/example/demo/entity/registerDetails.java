@@ -26,7 +26,9 @@ public class registerDetails {
 	
 	private String applicationName;
 		
-	private String services;
+	@ElementCollection
+	@CollectionTable(name="cs",joinColumns = @JoinColumn(name="id"))
+	private List<String> services;
 	
 	private LocalDate startDate;
 	
@@ -38,7 +40,7 @@ public class registerDetails {
 		super();
 	}
 
-	public registerDetails(String projectName, String applicationName, String services, LocalDate startDate,
+	public registerDetails(String projectName, String applicationName, List<String> services, LocalDate startDate,
 			LocalDate endDate) {
 		super();
 		this.projectName = projectName;
@@ -48,7 +50,7 @@ public class registerDetails {
 		this.endDate = endDate;
 	}
 
-	public registerDetails(String projectName, String applicationName, String services, LocalDate startDate,
+	public registerDetails(String projectName, String applicationName, List<String> services, LocalDate startDate,
 			LocalDate endDate, String token) {
 		super();
 		this.projectName = projectName;
@@ -83,11 +85,11 @@ public class registerDetails {
 		this.applicationName = applicationName;
 	}
 
-	public String getServices() {
+	public List<String> getServices() {
 		return services;
 	}
 
-	public void setServices(String services) {
+	public void setServices(List<String> services) {
 		this.services = services;
 	}
 
@@ -121,8 +123,6 @@ public class registerDetails {
 				+ ", services=" + services + ", startDate=" + startDate + ", endDate=" + endDate + ", token=" + token
 				+ "]";
 	}
-
-	
 
 		
 }

@@ -38,9 +38,17 @@ public class userServiceImpl implements userService {
 		OkHttpClient client = new OkHttpClient().newBuilder()
 				  .build();
 				MediaType mediaType = MediaType.parse("application/json");
-				String str = "{\n    \"username\": \""+ details.getApplicationName() + "\",\n    \"enabled\": true,\n    \"attributes\": {\n      \"microservices\": \""+ details.getServices() +"\" ,\n      \"expiration_time\": \"2024-12-31T23:59:59Z\"\n    },\n    \"credentials\": [\n      {\n        \"type\": \"password\",\n        \"value\": \""+ details.getApplicationName() + "\",\n        \"temporary\": false\n      }\n    ]\n  }";
+				StringBuilder sb = new StringBuilder();
+				sb.append("{ \"services\" : [");
+				for(String i:details.getServices()){
+				    sb.append("\""+ i +"\",");
+				}
+				sb.deleteCharAt(sb.length() - 1);
+				sb.append("] }");
+				System.out.println(sb.toString());
+				String str = "{\n    \"username\": \""+ details.getApplicationName() + "\",\n    \"enabled\": true,\n    \"attributes\": {\n      \"microservices\": \""+ sb.toString() +"\" ,\n      \"expiration_time\": \"2024-12-31T23:59:59Z\"\n    },\n    \"credentials\": [\n      {\n        \"type\": \"password\",\n        \"value\": \""+ details.getApplicationName() + "\",\n        \"temporary\": false\n      }\n    ]\n  }";
 				System.out.println(str);
-		        RequestBody body = RequestBody.create("{\n    \"username\": \""+ details.getApplicationName() + "\",\n    \"enabled\": true,\n    \"attributes\": {\n      \"microservices\": \""+ details.getServices() +"\" ,\n      \"expiration_time\": \"2024-12-31T23:59:59Z\"\n    },\n    \"credentials\": [\n      {\n        \"type\": \"password\",\n        \"value\": \""+ details.getApplicationName() + "\",\n        \"temporary\": false\n      }\n    ]\n  }",mediaType);
+		        RequestBody body = RequestBody.create("{\n    \"username\": \""+ details.getApplicationName() + "\",\n    \"enabled\": true,\n    \"attributes\": {\n      \"microservices\": \""+ sb.toString() +"\" ,\n      \"expiration_time\": \"2024-12-31T23:59:59Z\"\n    },\n    \"credentials\": [\n      {\n        \"type\": \"password\",\n        \"value\": \""+ details.getApplicationName() + "\",\n        \"temporary\": false\n      }\n    ]\n  }",mediaType);
 		        Request request = new Request.Builder()
 				  .url("http://10.63.20.62:31537/admin/realms/AuthTest/users")
 				  .method("POST", body)
