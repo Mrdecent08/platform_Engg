@@ -8,7 +8,6 @@ import com.example.demo.entity.registerDetails;
 import com.example.demo.service.userService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;

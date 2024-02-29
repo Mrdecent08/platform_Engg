@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.registerDetails;
+import com.example.demo.exception.ApplicationExists;
 import com.example.demo.exception.NoApplicationFoundException;
 import com.example.demo.repository.registerDetailsRepository;
 import com.example.demo.service.registerCsService;
@@ -35,12 +36,17 @@ public class registerCsServiceImpl implements registerCsService {
 
 	@Override
 	public String createApplication(registerDetails details) throws IOException {
-		String token = userService.generateToken();
-		userService.createUser(details, token);
-		details.setToken(generateTokenForApplication(details.getApplicationName()));
-		registerRepository.save(details);
-		registerDetails retrievedData = registerRepository.findByApplicationName(details.getApplicationName());
-		return retrievedData.getToken();
+		try {
+			String token = userService.generateToken();
+			userService.createUser(details, token);
+			details.setToken(generateTokenForApplication(details.getApplicationName()));
+			registerRepository.save(details);
+			registerDetails retrievedData = registerRepository.findByApplicationName(details.getApplicationName());
+			return retrievedData.getToken();
+		}
+		catch(Exception ex) {
+			throw new ApplicationExists("Application Already Exists");
+		}
 	}
 
 	private String generateTokenForApplication(String applicationName) throws IOException {
