@@ -36,17 +36,11 @@ public class registerCsServiceImpl implements registerCsService {
 
 	@Override
 	public String createApplication(registerDetails details) throws IOException {
-		try {
 			String token = userService.generateToken();
 			userService.createUser(details, token);
 			details.setToken(generateTokenForApplication(details.getApplicationName()));
 			registerRepository.save(details);
-			registerDetails retrievedData = registerRepository.findByApplicationName(details.getApplicationName());
-			return retrievedData.getToken();
-		}
-		catch(Exception ex) {
-			throw new ApplicationExists("Application Already Exists");
-		}
+			return getTokenByApplicationName(details.getApplicationName());
 	}
 
 	private String generateTokenForApplication(String applicationName) throws IOException {
@@ -71,10 +65,10 @@ public class registerCsServiceImpl implements registerCsService {
 
 	@Override
 	public String updateApplication(registerDetails details) {
-		int id = details.getId();
-		Optional<registerDetails> detail = registerRepository.findById(id);
+		String appName = details.getApplicationName();
+		Optional<registerDetails> detail = registerRepository.findByApplicationName(appName);
 		if (detail.isEmpty()) {
-			throw new NoApplicationFoundException("No Application with ID: " + id);
+			throw new NoApplicationFoundException("No Application with Name : " + appName);
 		} else {
 			registerRepository.save(details);
 			return "Details Are Updated Successfully";
@@ -100,7 +94,12 @@ public class registerCsServiceImpl implements registerCsService {
 
 	@Override
 	public String getTokenByApplicationName(String appName) {
-		return registerRepository.findByApplicationName(appName).getToken();
+		Optional<registerDetails> detail = registerRepository.findByApplicationName(appName);
+		if (detail.isEmpty()) {
+			throw new NoApplicationFoundException("No Application with Name : " + appName);
+		} else {
+			return detail.get().getToken();
+		}
 	}
 
 }
