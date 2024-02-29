@@ -36,11 +36,18 @@ public class registerCsServiceImpl implements registerCsService {
 
 	@Override
 	public String createApplication(registerDetails details) throws IOException {
+		String appName = details.getApplicationName();
+		Optional<registerDetails> detail = registerRepository.findByApplicationName(appName);
+		if (detail.isEmpty()) {
 			String token = userService.generateToken();
 			userService.createUser(details, token);
 			details.setToken(generateTokenForApplication(details.getApplicationName()));
 			registerRepository.save(details);
 			return getTokenByApplicationName(details.getApplicationName());
+		} else {
+			return "Application Already Exists";
+		}
+
 	}
 
 	private String generateTokenForApplication(String applicationName) throws IOException {
