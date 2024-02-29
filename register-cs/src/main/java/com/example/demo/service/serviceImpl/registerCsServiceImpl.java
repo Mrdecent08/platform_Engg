@@ -39,7 +39,8 @@ public class registerCsServiceImpl implements registerCsService {
 		userService.createUser(details, token);
 		details.setToken(generateTokenForApplication(details.getApplicationName()));
 		registerRepository.save(details);
-		return registerRepository.findTokenByApplicationName(details.getApplicationName());
+		registerDetails retrievedData = registerRepository.findByApplicationName(details.getApplicationName());
+		return retrievedData.getToken();
 	}
 
 	private String generateTokenForApplication(String applicationName) throws IOException {
@@ -89,6 +90,11 @@ public class registerCsServiceImpl implements registerCsService {
 		} else {
 			return details;
 		}
+	}
+
+	@Override
+	public String getTokenByApplicationName(String appName) {
+		return registerRepository.findByApplicationName(appName).getToken();
 	}
 
 }

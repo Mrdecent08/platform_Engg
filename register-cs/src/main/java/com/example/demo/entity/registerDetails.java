@@ -2,10 +2,10 @@ package com.example.demo.entity;
 
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.CollectionTable;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,6 +24,7 @@ public class registerDetails {
 	
 	private String projectName;
 	
+	@Column(unique = true)
 	private String applicationName;
 		
 	@ElementCollection
@@ -34,6 +35,7 @@ public class registerDetails {
 	
 	private LocalDate endDate;
 	
+	@Column(columnDefinition = "TEXT")
 	private String token;
 
 	public registerDetails() {

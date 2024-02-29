@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface registerDetailsRepository extends JpaRepository<registerDetails,Integer>{
 
-	String findTokenByApplicationName(String applicationName);
+	
+	registerDetails findByApplicationName(String applicationName);
+
 
 }

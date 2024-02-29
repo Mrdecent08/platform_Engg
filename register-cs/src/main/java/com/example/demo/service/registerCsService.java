@@ -18,4 +18,6 @@ public interface registerCsService {
 
 	Optional<registerDetails> getAllApplicationsDetailsById(int id);
 
+	String getTokenByApplicationName(String appName);
+
 }
