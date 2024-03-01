@@ -33,7 +33,7 @@ public class resgisterCsController {
 	}
 	
 	@PutMapping("/updateApplication")
-	public String updateApplication(@RequestBody registerDetails details) {
+	public String updateApplication(@RequestBody registerDetails details) throws IOException {
 		details.setToken("token");
 		return registerService.updateApplication(details);
 	}

@@ -10,6 +10,10 @@ public interface userService {
 
 	void createUser(registerDetails details,String token) throws IOException;
 
+	String getApplicationId(String appName) throws IOException;
+
+	void updateUser(registerDetails details, String token) throws IOException;
+
 
 
 }

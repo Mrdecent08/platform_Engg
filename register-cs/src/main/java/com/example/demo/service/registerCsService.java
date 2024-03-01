@@ -12,7 +12,7 @@ public interface registerCsService {
 
 	List<registerDetails> getAllApplicationsDetails();
 
-	String updateApplication(registerDetails details);
+	String updateApplication(registerDetails details) throws IOException;
 
 	String deleteApplication(int id);
 

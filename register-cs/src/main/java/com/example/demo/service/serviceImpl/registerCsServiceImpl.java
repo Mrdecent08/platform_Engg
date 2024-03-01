@@ -71,17 +71,24 @@ public class registerCsServiceImpl implements registerCsService {
 	}
 
 	@Override
-	public String updateApplication(registerDetails details) {
+	public String updateApplication(registerDetails details) throws IOException {
 		String appName = details.getApplicationName();
 		Optional<registerDetails> detail = registerRepository.findByApplicationName(appName);
 		if (detail.isEmpty()) {
 			throw new NoApplicationFoundException("No Application with Name : " + appName);
 		} else {
+			String appId = userService.getApplicationId(appName);
+			String token = userService.generateToken();
+			userService.updateUser(details, token);
+			details.setToken(generateTokenForApplication(details.getApplicationName()));
 			registerRepository.save(details);
-			return "Details Are Updated Successfully";
+			return getTokenByApplicationName(details.getApplicationName());
+			
 		}
 
 	}
+
+	
 
 	@Override
 	public String deleteApplication(int id) {
