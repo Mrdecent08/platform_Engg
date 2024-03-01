@@ -79,9 +79,10 @@ public class registerCsServiceImpl implements registerCsService {
 		} else {
 			String appId = userService.getApplicationId(appName);
 			String token = userService.generateToken();
-			userService.updateUser(details, token);
-			details.setToken(generateTokenForApplication(details.getApplicationName()));
+			userService.updateUser(appId,details, token);
+			registerRepository.deleteById(detail.get().getId());
 			registerRepository.save(details);
+			details.setToken(generateTokenForApplication(details.getApplicationName()));
 			return getTokenByApplicationName(details.getApplicationName());
 			
 		}

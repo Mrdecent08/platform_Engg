@@ -61,7 +61,7 @@ public class userServiceImpl implements userService {
 		MediaType mediaType = MediaType.parse("text/plain");
 		RequestBody body = RequestBody.create("", mediaType);
 		Request request = new Request.Builder()
-				.url("http://10.63.20.62:31537/admin/realms/AuthTest/users?username=" + appName).method("GET", body)
+				.url("http://10.63.20.62:31537/admin/realms/AuthTest/users?username=" + appName).method("GET",null)
 				.addHeader("Authorization", "Bearer " + generateToken()).build();
 		Response response = client.newCall(request).execute();
 		ObjectMapper mapper = new ObjectMapper();
@@ -70,7 +70,7 @@ public class userServiceImpl implements userService {
 	}
 
 	@Override
-	public void updateUser(registerDetails details, String token) throws IOException {
+	public void updateUser(String appId,registerDetails details, String token) throws IOException {
 
 		OkHttpClient client = new OkHttpClient().newBuilder().build();
 		MediaType mediaType = MediaType.parse("application/json");
@@ -82,8 +82,10 @@ public class userServiceImpl implements userService {
 		sb.deleteCharAt(sb.length() - 1);
 		sb.append("] }");
 		RequestBody body = RequestBody.create("{\n    \"firstName\": \"New First Name\",\n    \"lastName\": \"New Last Name\",\n    \"attributes\": {\n        \"microservices\":\""+ sb.toString() +"\"\n    }\n}",mediaType);
+		String str = "{\n    \"firstName\": \"New First Name\",\n    \"lastName\": \"New Last Name\",\n    \"attributes\": {\n        \"microservices\":\""+ sb.toString() +"\"\n    }\n}";
+		System.out.println(str);
 		Request request = new Request.Builder()
-				.url("http://10.63.20.62:31537/admin/realms/AuthTest/users/89a4cf99-cb0e-4a31-8861-428dcec6dedb")
+				.url("http://10.63.20.62:31537/admin/realms/AuthTest/users/"+appId)
 				.method("PUT", body).addHeader("Content-Type", "application/json")
 				.addHeader("Authorization",
 						"Bearer "+ token)

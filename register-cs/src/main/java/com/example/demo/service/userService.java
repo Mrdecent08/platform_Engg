@@ -12,7 +12,7 @@ public interface userService {
 
 	String getApplicationId(String appName) throws IOException;
 
-	void updateUser(registerDetails details, String token) throws IOException;
+	void updateUser(String appId, registerDetails details, String token) throws IOException;
 
 
 
