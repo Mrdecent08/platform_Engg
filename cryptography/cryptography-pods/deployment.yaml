@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cryptography-deploy
+  namespace: cryptography
+spec:
+  selector:
+    matchLabels:
+      app: cryptography-deploy
+  template:
+    metadata:
+      labels:
+        app: cryptography-deploy
+    spec:
+      containers:
+      - name: cryptography-deploy
+        image: srinivas080801/cryptography:latest
+        ports:
+        - containerPort: 8001
