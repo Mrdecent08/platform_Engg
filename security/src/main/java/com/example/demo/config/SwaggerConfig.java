@@ -20,10 +20,9 @@ public class SwaggerConfig{
         @Bean
         public Docket api() {
                 return new Docket(DocumentationType.SWAGGER_2)
-                				.groupName("v1")
                                 .select()
                                 .apis(RequestHandlerSelectors.basePackage("com.example.demo"))
-                                .paths(PathSelectors.ant("/data-encrypt/**"))
+                                .paths(PathSelectors.any())
                                 .build()
                                 .apiInfo(apiInfo());
         }
