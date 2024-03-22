@@ -3,14 +3,18 @@ package com.example.demo.service.serviceImpl;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.example.demo.entity.alertDetails;
 import com.example.demo.exception.NoAlertFoundException;
 import com.example.demo.repository.alertRepository;
 import com.example.demo.service.alertService;
 
+@Service
 public class alertServiceImpl implements alertService{
 	
 	private alertRepository alertRepo;
+	
 
 	@Override
 	public String addAlert(alertDetails alertData) {
@@ -24,8 +28,8 @@ public class alertServiceImpl implements alertService{
 	}
 
 	@Override
-	public List<alertDetails> getAlertByName() {
-		return alertRepo.findAlertByAlertname();
+	public List<alertDetails> getAlertByName(String alertName) {
+		return alertRepo.findAlertByAlertname(alertName);
 	}
 
 	@Override

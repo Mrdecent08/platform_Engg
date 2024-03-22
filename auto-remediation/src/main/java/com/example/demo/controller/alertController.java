@@ -2,18 +2,18 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.alertDetails;
 import com.example.demo.service.alertService;
 
-@Controller
+@RestController
 public class alertController {
 
 	private alertService alertSer;
@@ -29,8 +29,8 @@ public class alertController {
 	}
 
 	@GetMapping("/retrieveAlertByName")
-	private List<alertDetails> retrieveAlertByName() {
-		return alertSer.getAlertByName();
+	private List<alertDetails> retrieveAlertByName(@RequestParam String alertName) {
+		return alertSer.getAlertByName(alertName);
 	}
 	
 	@GetMapping("/retrieveAlertById")
