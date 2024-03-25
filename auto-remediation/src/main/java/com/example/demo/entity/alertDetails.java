@@ -20,6 +20,11 @@ public class alertDetails {
 	
 	private String remediation;
 
+	
+	public alertDetails() {
+		super();
+	}
+
 	public alertDetails(String alertname, String category, String logSignature, String remediation) {
 		super();
 		this.alertname = alertname;

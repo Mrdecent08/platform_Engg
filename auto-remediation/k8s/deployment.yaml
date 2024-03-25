@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auto-remediation-application
+  namespace: ar
+  labels:
+    app: auto-remediation-application
+spec:
+  selector:
+    matchLabels:
+      app: auto-remediation-application
+  template:
+    metadata:
+      labels:
+        app: auto-remediation-application
+    spec:
+      containers:
+      - name: auto-remediation-application
+        image: srinivas080801/auto-remediation:latest
+        ports:
+        - containerPort: 8080

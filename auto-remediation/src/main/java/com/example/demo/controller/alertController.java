@@ -33,6 +33,11 @@ public class alertController {
 		return alertSer.getAlertByName(alertName);
 	}
 	
+	@GetMapping("/retrieveAlertByNameAndCategory")
+	private alertDetails retrieveAlertByNameAndCategory(@RequestParam String alertName,@RequestParam String category) {
+		return alertSer.getAlertByNameAndCategory(alertName,category);
+	}
+	
 	@GetMapping("/retrieveAlertById")
 	private alertDetails retrieveAlertById(@RequestParam int id) {
 		return alertSer.getAlertById(id);

@@ -15,6 +15,11 @@ public class alertServiceImpl implements alertService{
 	
 	private alertRepository alertRepo;
 	
+	
+	public alertServiceImpl(alertRepository alertRepo) {
+		super();
+		this.alertRepo = alertRepo;
+	}
 
 	@Override
 	public String addAlert(alertDetails alertData) {
@@ -59,6 +64,11 @@ public class alertServiceImpl implements alertService{
 		}
 		alertRepo.deleteById(id);
 		return "Alert Deleted Successfully!!";
+	}
+
+	@Override
+	public alertDetails getAlertByNameAndCategory(String alertName, String category) {
+		return alertRepo.findAlertByAlertnameAndCategory(alertName,category);
 	}
 
 }

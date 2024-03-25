@@ -12,4 +12,6 @@ public interface alertRepository extends JpaRepository<alertDetails, Integer>{
 
 	List<alertDetails> findAlertByAlertname(String alertName);
 
+	alertDetails findAlertByAlertnameAndCategory(String alertName, String category);
+
 }

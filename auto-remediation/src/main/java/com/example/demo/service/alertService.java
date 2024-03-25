@@ -21,4 +21,6 @@ public interface alertService {
 
 	String deleteAlertById(int id);
 
+	alertDetails getAlertByNameAndCategory(String alertName, String category);
+
 }
