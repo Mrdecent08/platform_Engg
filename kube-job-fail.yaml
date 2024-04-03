@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kube-job
+  namespace: remediation
+spec:
+  template:
+    metadata:
+      name: kube-job
+    spec:
+      containers:
+      - name: kube-job-falied
+        image: busybox
+        command: ["ls", "services"] 
+      restartPolicy: Never
+
+
