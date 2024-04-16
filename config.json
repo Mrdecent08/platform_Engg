@@ -3,7 +3,7 @@
     "Qwen2ForCausalLM"
   ],
   "attention_dropout": 0.0,
-  "bos_token_id": 1,
+  "bos_token_id": 2,
   "eos_token_id": 2,
   "hidden_act": "silu",
   "hidden_size": 4096,
