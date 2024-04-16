@@ -20,7 +20,7 @@ CodeQwen1.5 is the Code-Specific version of Qwen1.5. It is a transformer-based d
 * Strong code generation capabilities and competitve performance across a series of benchmarks;
 * Supporting long context understanding and generation with the context length of 64K tokens;
 * Supporting 92 coding languages
-* Excellent performance on text-to-SQL, bug fix, etc.
+* Excellent performance in text-to-SQL, bug fix, etc.
 
 
 For more details, please refer to our [blog post](https://qwenlm.github.io/blog/codeqwen1.5/) and [GitHub repo](https://github.com/QwenLM/Qwen1.5).
