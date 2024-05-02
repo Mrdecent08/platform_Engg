@@ -11,12 +11,9 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-
 @Configuration
 @EnableSwagger2
-
 public class SwaggerConfig{
-        
         @Bean
         public Docket api() {
                 return new Docket(DocumentationType.SWAGGER_2)
@@ -28,8 +25,8 @@ public class SwaggerConfig{
         }
         private ApiInfo apiInfo() {
                 return new ApiInfoBuilder()
-                                .title("Encryption and Decryption")
-                                .description("api for my Encryption and Decryption")
+                                .title("User Application")
+                                .description("Apis For user Database")
                                 .version("1.0")
                                 .build();
         }
