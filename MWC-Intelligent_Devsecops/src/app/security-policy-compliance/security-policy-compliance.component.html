@@ -1,0 +1,36 @@
+<div class="secCompWidget">
+        <div class="secComWidgetHeader">
+           <!-- <div>Security Compliance</div> -->
+           <div>Production Issues</div>
+        </div>
+        <div class="secCompwidgetBody">
+            <div *ngIf="error" class="dataBaseError"> No Data from Database</div>
+            <div class="productionIssueCard" (click)="openModalDialog()" *ngIf="!error">
+               <div class="productionIssueContent">
+                    {{feildIssues?.length}}
+               </div>
+            </div>
+           
+        </div>
+</div>
+
+ <!-- <div class="pieChartContainer">
+            <ngx-charts-pie-chart
+            [scheme]="colorScheme"
+            [view]= "[180, 230]"
+            [results]="securityCompliancePieData"
+            [legend]="true"
+            [legendPosition]="below"
+            [legendTitle]="''"
+            [explodeSlices]="false"
+            [labels]="showLabels"
+            [doughnut]="false"
+            [gradient]="gradient"
+            [arcWidth]= "0.35"
+            (select)="onSelect($event)">
+        </ngx-charts-pie-chart>
+    </div> -->
+
+    <!-- <div *ngFor="let obj of single">
+        {{obj?.name}} {{obj?.value}}%
+    </div> -->

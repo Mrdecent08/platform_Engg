@@ -1,0 +1,46 @@
+<div class="projectsLiveWidget">    
+    <div class="prjLiveHeader">
+        Project in LIVE
+    </div>
+    <div *ngIf="error" class="dataBaseError"> No Data from Database</div>
+    <div *ngIf="!error">
+        <div *ngFor="let project of liveData" class="paddingBtwProjects">
+                <div class="prjNameWidth prjNamePadding stagesCursor">
+                    <div class="timelinePrjBox">
+                        <div class="textInTimeLineBoxPL">{{project?.project}}</div>
+                    </div>
+                </div>
+                <div class="projectLine" *ngFor="let sprint of project?.sprints" 
+                    [style.width.%]="widthx">  
+                        
+                    <div class="rightLine"></div>
+                    <div class="dot"
+                            [ngClass]="{'success':(sprint?.status == 'deployed'), 
+                            'failure': (sprint?.status == 'failed')}"></div>
+                            
+                    <div class="rightLine"></div>                        
+                    <!---- <div class="topLine"></div>      -->       
+                </div>              
+        </div>
+        <div class="prjNameWidth"></div>
+        <div class="sprintLine" *ngFor="let sprint of sprintData, let i = index"
+                    [style.width.%]="widthx" 
+                    style="font-size: 20px;">
+                <div class="topPart">                    
+                    <div class="leftLine"></div>
+                </div>
+            <div class="stageName">
+                <div>S{{i+1}}</div> 
+            </div>
+        </div>
+        <div class="titleLegend"></div>
+        <div class="dataWidth">
+            <ul class="PLnorderedList">
+                    <li class="dot failure"></li>
+                    <li class="PLlabelText">Failed</li>
+                    <li class="dot success"></li>
+                    <li class="PLlabelText">Deployed</li>
+            </ul>
+        </div>
+    </div>
+</div>

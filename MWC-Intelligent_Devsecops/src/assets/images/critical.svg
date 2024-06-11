@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+  <g id="critical" transform="translate(-1622 -408)">
+    <g id="Group_1214" data-name="Group 1214" transform="translate(1251 176)">
+      <g id="Polygon_3" data-name="Polygon 3" transform="translate(371 232)" fill="#fff">
+        <path d="M 12.52081966400146 17.5 L 5.479179859161377 17.5 L 0.5 12.52081966400146 L 0.5 5.479179859161377 L 5.479179859161377 0.5 L 12.52081966400146 0.5 L 17.5 5.479179859161377 L 17.5 12.52081966400146 L 12.52081966400146 17.5 Z" stroke="none"/>
+        <path d="M 5.686300277709961 1 L 1 5.686300277709961 L 1 12.31369972229004 L 5.686300277709961 17 L 12.31369972229004 17 L 17 12.31369972229004 L 17 5.686300277709961 L 12.31369972229004 1 L 5.686300277709961 1 M 5.272080421447754 0 L 12.72792053222656 0 L 18 5.272080421447754 L 18 12.72792053222656 L 12.72792053222656 18 L 5.272080421447754 18 L 0 12.72792053222656 L 0 5.272080421447754 L 5.272080421447754 0 Z" stroke="none" fill="#f06293"/>
+      </g>
+      <g id="Group_1212" data-name="Group 1212" transform="translate(-5.5 28.203)">
+        <line id="Line_321" data-name="Line 321" x2="7.703" y2="7.703" transform="translate(381.5 208.797)" fill="none" stroke="#f06293" stroke-width="1"/>
+        <line id="Line_322" data-name="Line 322" x2="7.703" y2="7.703" transform="translate(389.203 208.797) rotate(90)" fill="none" stroke="#f06293" stroke-width="1"/>
+      </g>
+    </g>
+  </g>
+</svg>

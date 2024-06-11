@@ -1,0 +1,48 @@
+.chart-legend .legend-labels  {
+    text-align: center !important;
+    background-color: #ffffff !important;
+    width: auto !important;
+}
+
+
+.secCompWidget {
+    background-color: #ffffff;
+    height: 350px;
+    width: 100%;
+    padding: 15px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 4px #8C94A51A;
+    border-radius: 6px;
+}
+.secComWidgetHeader{
+    font: Regular 15px/40px Roboto;
+    font-size: 15px;
+    letter-spacing: 0;
+    color: #373640;
+    background-color: #ffffff;
+}
+.secCompwidgetBody {
+    width: 100%;
+    height: 330px;
+}
+.pieChartContainer {
+    width: 160px;
+    height: 200px;
+}
+
+.productionIssueCard {
+    background-color: #FF5A5A;
+    width: 80%;
+    margin: 20px auto;
+    height: 150px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.productionIssueContent {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 64px;
+    color: #ffffff;
+    text-align: center;
+}

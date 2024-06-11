@@ -1,0 +1,89 @@
+<div class="pdGraphWidget">
+    <div class="pdGraphHeader">Test Optimization</div>
+    <div class="pdGraphBody">
+        <div *ngIf="error" class="dataBaseError"> No Data from Database</div>
+        <div class="graphCopntainer"  *ngIf="projectTestOptimizedData.length > 0">
+            <!-- <ngx-charts-bar-vertical-stacked
+                [results]="projectTestOptimizedData"
+                [scheme]="colorScheme"
+                [xAxis]="true"
+                [yAxis]="true"
+                [legend]="true"
+                [legendPosition]= "'below'"
+                [showXAxisLabel]="false"
+                [showYAxisLabel]="false"
+                [xAxisLabel]="xAxisLabel"
+                [yAxisLabel]="yAxisLabel"
+                [legendTitle]="''">
+            </ngx-charts-bar-vertical-stacked> -->
+            <ngx-charts-bar-vertical-2d
+                [results]="projectTestOptimizedData"
+                [scheme]="colorScheme"
+                [xAxis]="true"
+                [yAxis]="true"
+                [legend]="true"
+                [legendPosition]= "'below'"
+                [showXAxisLabel]="false"
+                [showYAxisLabel]="false"
+                [xAxisLabel]="xAxisLabel"
+                [yAxisLabel]="yAxisLabel"
+                [legendTitle]="''">
+            </ngx-charts-bar-vertical-2d>
+        </div>
+
+        
+    </div>
+</div>
+
+
+<!-- <ngx-datatable-column [sortable]="true" prop="vulnerabilityName">
+        <ng-template let-column="column" ngx-datatable-header-template> 
+            <div class="dataTableHeader">Vulnerability Name</div>
+        </ng-template>
+        <ng-template let-row="row" width="200" ngx-datatable-cell-template>
+          {{row.vulnerabilityName}}
+        </ng-template>
+      </ngx-datatable-column>
+    
+      <ngx-datatable-column [sortable]="true" prop="Description">
+        <ng-template let-column="column" ngx-datatable-header-template> 
+            <div class="dataTableHeader">Description</div>
+
+        </ng-template>
+        <ng-template let-row="row"  width="300" ngx-datatable-cell-template>
+          {{row.Description}}
+        </ng-template>
+      </ngx-datatable-column>
+    
+        <ngx-datatable-column [sortable]="true">
+            <ng-template let-column="column" ngx-datatable-header-template> 
+                <div class="dataTableHeader">Type</div>      
+            </ng-template>
+            <ng-template let-row="row" width="100" ngx-datatable-cell-template>
+                {{row.Type}}
+            </ng-template>
+       </ngx-datatable-column>
+       <ngx-datatable-column [sortable]="true">
+          <ng-template let-column="column" ngx-datatable-header-template> 
+              <div class="dataTableHeader">vulnerabilityDate</div>      
+          </ng-template>
+          <ng-template let-row="row" width="200" ngx-datatable-cell-template>
+              {{row.vulnerabilityDate}}
+          </ng-template>
+     </ngx-datatable-column>
+     <ngx-datatable-column [sortable]="true">
+      <ng-template let-column="column" ngx-datatable-header-template> 
+          <div class="dataTableHeader">Assets Effected</div>      
+      </ng-template>
+      <ng-template let-row="row" width="200" ngx-datatable-cell-template>
+          {{row.Assets_Effected}}
+      </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column [sortable]="true">
+          <ng-template let-column="column" ngx-datatable-header-template> 
+              <div class="dataTableHeader">Date Fixed</div>      
+          </ng-template>
+          <ng-template let-row="row" width="200" ngx-datatable-cell-template>
+              {{row.Date_Fixed}}
+          </ng-template>
+      </ngx-datatable-column> -->

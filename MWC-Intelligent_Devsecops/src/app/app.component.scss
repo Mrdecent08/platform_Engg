@@ -1,0 +1,106 @@
+.systemBar {
+    height: 60px;
+    line-height: 60px;
+    background-color: black;
+}
+.appTitleContainer {
+    color: #ffffff;
+}
+.appTitle {
+    padding: 0 15px;
+  /*   font-weight: 900;
+    font-size: 24px; */
+    font: Medium 26px/22px Poppins;
+    letter-spacing: 0;
+    color: #FFFFFF;
+}
+
+.mainBtn {
+    width: 550px;
+    background-color: #ffffff;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 15px;
+    margin: 15px 0;
+    float: right;
+}
+.sysBarLIstElement{
+    color: #ffffff;
+    float: right;
+    margin: 0 20px;
+}
+.userContainer {
+    width: auto;
+}
+.userCol {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 10px;
+}.userText {
+    padding: 10px 0 0 0;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+}
+.userDesignation {
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+}
+.prjctSltBtn {
+    width: 30%;
+}
+.selPrj {
+  background-color: #ffffff;
+  border: none;
+  margin: 0 15px;
+  max-width: 100%;
+}
+.selPrj:focus {
+    outline: unset;
+}
+.selPrjOption {
+    padding: 15px !important;
+}
+.selPrjOption:hover {
+    background-color: #d8d8d8 !important;
+}
+.vulnerabilitySltBtn {
+    width: 50%;
+}
+.searchBtn {
+    width: 20%;
+    padding: 0 20px;
+}
+
+.indivdualBtn {
+    display: inline-block;
+    border-right: 1px solid black;
+}
+
+.mainContent {
+    background: #F4F6FA 0% 0% no-repeat padding-box;
+    height: calc(100vh - 60px);
+    overflow: auto;
+}
+
+.drpDwnBtn {
+    background-color: #ffffff;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 15px;
+    width: 150px;
+    text-align: center;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.openDropdown {
+    display: block !important;
+}
+.dropDownItem {
+    padding: 5px;
+    cursor: pointer;
+}
+.Cursor {
+    cursor: pointer;
+}

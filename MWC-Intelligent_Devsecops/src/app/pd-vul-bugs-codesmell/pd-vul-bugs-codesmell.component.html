@@ -1,0 +1,162 @@
+<!-- <div class="row">
+    <div class="col-md-5">
+        <div class="vulBugCSContainer">
+            <div>Current Vulnerabilities</div>
+            <div class="vulCol">
+                <div class="buildNumber">{{buildData?.builds}}</div>
+                <div class="buildDescription">Critical</div>
+            </div>
+            <div class="vulCol">
+                <div class="buildNumber">{{buildData?.passed}}</div>
+                <div class="buildDescription">Major</div>
+            </div>
+            <div class="vulCol">
+                <div class="buildNumber">{{buildData?.failed}}</div>
+                <div class="buildDescription">Minor</div>
+            </div>
+            <div class="vulCol">
+                <div class="buildNumber">{{buildData?.failed}}</div>
+                <div class="buildDescription">Info</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="vulBugCSContainer">
+            <div>Bugs</div>
+            <div class="bugsCol">
+                <div class="buildDescription">Total</div>
+                <div class="buildNumber">{{buildData?.builds}}</div>
+            </div>
+            <div class="bugsCol">
+                <div class="buildDescription">Open</div>
+                <div class="buildNumber">{{buildData?.passed}}</div>
+            </div>
+            <div class="bugsCol">
+                <div class="buildDescription">Closed</div>
+                <div class="buildNumber">{{buildData?.failed}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="vulBugCSContainer">
+            <div>Code Smell</div>
+            <div class="codesmellCol">
+                <div class="buildNumber">{{buildData?.builds}} <span class="noramalFont">Days</span></div>
+                <div class="buildDescription">Technical Debts</div>
+            </div>
+            <div class="codesmellCol">
+                <div class="buildNumber">{{buildData?.passed}}</div>
+                <div class="buildDescription">Code Smell</div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<div class="secvulDefectsCSWidget">
+    <div class="loader" *ngIf="isLoading"></div>
+    <div *ngIf="!isLoading">
+   <div class="secvulDefCSHeader">
+       <ul class="secVulDefUL cursor">
+          <li [ngClass]="{'active tooltiptextPd_vul_bugs_cs': (activeTab == 'secVul') }" (click)="setTheTab('secVul')">Security Vulnerabilities ({{countOfTabs["secVulnerabilites"]}})</li>
+          <li [ngClass]="{'active tooltiptextPd_vul_bugs_cs': (activeTab == 'defects') }" (click)="setTheTab('defects')">Defects ({{countOfTabs["defects"]}})</li>
+          <li [ngClass]="{'active tooltiptextPd_vul_bugs_cs': (activeTab == 'codeSmell') }" (click)="setTheTab('codeSmell')">Code Smells ({{countOfTabs["code_smells"]}})</li>
+       </ul>
+   </div>
+   <div class="secvulDefCSBodySummary">
+        <ul class="secVulDefUL secDefCSsmHeading" *ngIf="(activeTab == 'secVul')">
+            <li > <img class="imgContainer" src="assets/images/critical.svg"> Critical {{projVulnerabilityData?.critical}}</li>
+            <li> <img class="imgContainer" src="assets/images/major.svg"> Major {{projVulnerabilityData?.major}}</li>
+            <li > <img class="imgContainer" src="assets/images/minor.svg"> Minor {{projVulnerabilityData?.minor}}</li>
+        </ul>
+        <ul class="secVulDefUL secDefCSsmHeading" *ngIf="(activeTab == 'defects')">
+                <li > <img class="imgContainer" src="assets/images/critical.svg"> Blocker {{projectDefectsData?.blocker}}</li>
+                <li > <img class="imgContainer" src="assets/images/critical.svg"> Critical {{projectDefectsData?.critical}}</li>
+                <li> <img class="imgContainer" src="assets/images/major.svg"> Major {{projectDefectsData?.major}}</li>
+                <li > <img class="imgContainer" src="assets/images/minor.svg"> Minor {{projectDefectsData?.minor}}</li>
+        </ul>
+        <ul class="secVulDefUL secDefCSsmHeading" *ngIf="(activeTab == 'codeSmell')">
+                <li > <img class="imgContainer" src="assets/images/critical.svg"> Critical {{projectCodeSmellsData?.critical}}</li>
+                <li> <img class="imgContainer" src="assets/images/major.svg"> Major {{projectCodeSmellsData?.major}}</li>
+                <li > <img class="imgContainer" src="assets/images/minor.svg"> Minor {{projectCodeSmellsData?.minor}}</li>
+        </ul>
+   </div>
+   <div *ngIf="error" class="dataBaseError padding"> No Data from Database</div>
+  <!--  <div>
+    <ngx-datatable class="logInsightTable material" [rows]="rows" [scrollbarH]="true"  [scrollbarV]="true" [reorderable]="true" [swapColumns]="true"
+    [columnMode]="force"  [rowClass]="getRowClass" [headerHeight]="32" [footerHeight]="40" [rowHeight]="32" [limit]="10">
+        <ngx-datatable-column [sortable]="true" width="{{keyObj['width']}}" *ngFor="let keyObj of tableHeaderObj">
+            <ng-template let-column="column" ngx-datatable-header-template > 
+                <div class="dataTableHeader">{{keyObj['displayName']}}</div>      
+            </ng-template>
+            <ng-template let-row="row" width="400" ngx-datatable-cell-template>
+            <span [ngClass]='{"btnT": (keyObj["key"] == "type"), "criBtn":(row[keyObj["key"]]=="CRITICAL"),"majorBtn":(row[keyObj["key"]]=="MAJOR"), "minorBtn":(row[keyObj["key"]]=="MINOR")}' class="dataTableRCell"> {{row[keyObj["key"]]}} </span> 
+            </ng-template>
+        </ngx-datatable-column>
+        
+        <ngx-datatable-footer>
+            <ng-template ngx-datatable-footer-template *ngIf="rows.length > 0" >
+                <div class="row tableFooter">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-3">
+                        Rows per page <select class="selectInput" (change)="updateRecPerPage($event.target.value)" value={{rowsPerPage}}>
+                        <option class="optionInput" *ngFor="let x of recperpage" value="{{x}}">{{x}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="tableFooterCol">
+                            {{((currentPage-1)*this.rowsPerPage)+1}} - <span *ngIf="currentPage != totalPages">{{this.currentPage*this.rowsPerPage}}</span>
+                            <span *ngIf="currentPage == totalPages">{{totalRecords.length}}</span> of {{totalRecords.length}}
+                        </div> 
+                    </div>
+                    <div class="col-md-3">
+                        <div class="tableFooterCol">
+                            <button class="preNxtBtn" [disabled]="currentPage == 1" (click) = previous()>Previous</button>
+                            <button class="preNxtBtn" [disabled]="currentPage == totalPages" (click)=next()>Next</button>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ngx-datatable-footer>
+    </ngx-datatable>
+   </div> -->
+   <div class="tableContainer" *ngIf="rows.length > 0">
+        <table class="modalTable">
+            <tr class="modalTableHeader">
+                <th class="indexCell"> # </th>
+                <th *ngFor="let keyObj of tableHeaderObj" class="modalTableHeaderCell" (click)="sortTheTable(keyObj?.key, false)"> {{keyObj['displayName']}} </th>
+            </tr>
+            <tr *ngFor="let rowBody of rows; let i = index" class="modalTableRow">
+                <td class= "indexCell"> {{i+1}} </td>
+                <td *ngFor="let keyObj of tableHeaderObj" class="modalTableRowCell">
+                   <!--  <span> {{rowBody[keyObj["key"]]}} </span> -->
+                    <span [ngClass]='{"btnT": (keyObj["key"] == "type" || keyObj["key"] == "severity"), "criBtn":(rowBody[keyObj["key"]]=="CRITICAL"),"majorBtn":(rowBody[keyObj["key"]]=="MAJOR"), "minorBtn":(rowBody[keyObj["key"]]=="MINOR"), "blockerBtn":(rowBody[keyObj["key"]]== "BLOCKER"), "infoBtn":(rowBody[keyObj["key"]]== "INFO") }'> {{rowBody[keyObj["key"]]}} </span> 
+                </td>
+            </tr>
+        </table>
+   </div>
+   <div class="row tableFooter" *ngIf="rows.length > 0">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+            Rows per page <select class="selectInput" (change)="updateRecPerPage($event.target.value)" value={{rowsPerPage}}>
+            <option class="optionInput" *ngFor="let x of recperpage" value="{{x}}">{{x}}</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <div class="tableFooterCol">
+                {{((currentPage-1)*this.rowsPerPage)+1}} - <span *ngIf="currentPage != totalPages">{{this.currentPage*this.rowsPerPage}}</span>
+                <span *ngIf="currentPage == totalPages">{{totalRecords.length}}</span> of {{totalRecords.length}}
+            </div> 
+        </div>
+        <div class="col-md-3">
+            <div class="tableFooterCol">
+                <button class="preNxtBtn" [disabled]="currentPage == 1" (click) = previous()>Previous</button>
+                <!-- <span class="numberBtn"> {{currentPage}}</span> -->
+                <button class="preNxtBtn" [disabled]="currentPage == totalPages" (click)=next()>Next</button>
+            </div>
+        </div>
+    </div>
+    <div class="noData" *ngIf="rows.length == 0 && !error" >
+        No Data to display
+    </div>
+    
+</div>
+</div>

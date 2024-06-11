@@ -1,0 +1,120 @@
+<div class="widget">
+    <div class="widgetHeader">
+        Projects in DevSecOps Pipeline
+    </div>
+
+    <div class="widgetBody">
+      <div *ngIf="error" class="dataBaseError"> No Data from Database</div>
+      <div class="rowCustom" *ngIf="!isLoading && !error">
+        <div class="firstColumn">
+            <div class="chartYaxisLegend">Upcoming Releases</div>
+        </div>
+          <div class="secondColumn" [ngClass]="{'expandColumn': (hoveredPrj == '') }">
+            <div class="col-md-12 paddingBtwProjects" *ngFor="let project of projects; let i = index">
+                <div class="rowCustom">
+                    <div class="blockWidth prjNamePadding stagesCursor">
+                        <div class="timelinePrjBox" (click)="goToProjectDetailsPage(project)">
+                            <div class="textInTimeLineBox">{{project?.name}}</div>
+                        </div>
+                    </div>
+                    <div class="blockWidth noPadding stagesCursor" [style.width.%]="widthx" *ngFor="let stage of project?.stages" (click)="getToolDetails(project, stage?.tool, i)" >
+                        <div class="timelineBox" [ngClass]="{'success':(stage?.status == 'SUCCESS'), 'failure': (stage?.status == 'FAILED'), 'notExecuted':(stage?.status == 'NOT_EXECUTED' || stage?.status == 'ABORTED' || stage?.duration == null )}">
+                            <div class="textInTimeLineBox" *ngIf="stage?.duration != null && stage?.name != 'Deploy'">{{stage?.newduration}}
+                                <div *ngIf="(stage?.status == 'IN_PROGRESS')"> In Progress </div>
+                            </div>
+                            <div class="textInTimeLineBox" *ngIf="stage?.duration == null && stage?.name != 'Deploy'"></div>
+                            <div class="textInTimeLineBox" *ngIf="stage?.name == 'Deploy'">
+                                <img src="assets/images/pass.svg" *ngIf="(stage?.status == 'SUCCESS')">
+                                <img src="assets/images/fail.svg" *ngIf="(stage?.status == 'FAILED')">
+                                <div *ngIf="(stage?.status == 'IN_PROGRESS')"> In Progress </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="statusOfBuild prjNamePadding">
+                        <div class="timelinePrjBox">
+                            <div class="textInTimeLineBox prjStatusBold" [ngClass]="{'successFont':(project?.status == 'SUCCESS'), 'failureFont': (project?.status == 'FAILED'), 'notExecutedFont':(project?.status == 'NOT_EXECUTED' || project?.status == 'ABORTED')}">{{project?.status}}</div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="blockWidth" [style.width.%]="widthx" *ngIf="(project?.status == 'IN_PROGRESS')">
+                        <div class="timelineBox fullWidthBox" [ngClass]="{'success':(project?.status == 'SUCCESS'), 'failure': (project?.status == 'FAILED')}">
+                            <div class="textInTimeLineBox">
+                                <img src="assets/images/pass.svg" *ngIf="(project?.status == 'SUCCESS')">
+                                <img src="assets/images/fail.svg" *ngIf="!((project?.status == 'SUCCESS') || (project?.status == 'IN_PROGRESS'))">
+                                <span *ngIf="(project?.status == 'IN_PROGRESS')"> In Progress </span>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>               
+            </div>
+            <div class="col-md-12">
+                <div class="rowCustom">
+                    <div class="blockWidth">                           
+                    </div>
+                    <div class="blockWidth noPadding" [style.width.%]="widthx" *ngFor="let stage of buildStages">
+                        <div class="timeLinecontainer">
+                            <div class="topPart">
+                                <div class="leftLine"></div>
+                                <span class="dot"></span>
+                                <div class="leftLine"></div>
+                            </div>
+                            <div class="stageName">
+                                {{stage}} 
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="statusOfBuild">
+                    </div> -->
+                </div>               
+            </div>
+            <div class="col-md-12">
+                <div class="rowCustom">
+                    <div class="blockWidth">                           
+                    </div>
+                    <div class="chartXaxisLegend">
+                        DevSecOps Pipeline
+                    </div>
+                </div>               
+            </div>
+          </div>
+          <div class="thirdColumn" [ngClass]="{'hideColumn': (hoveredPrj == '') }">
+            <div *ngIf="hoveredPrj" class="detailBox tooltiptext" [ngClass]="getClass()">
+                <div class="toolImageContainer">
+                    <img [src]="toolImagePath" *ngIf="toolImagePath">
+                    <!-- <span class="pull-right stagesCursor" (click)="resetData()">
+                            x
+                    </span> -->
+                    <span class="toolName"> {{toolDisplayName[toolName]}}</span>
+                    <div class="closeContainerDevPipepline" (click)="resetData()">
+                        x
+                     </div>
+                </div>
+                    
+                <div class="pull-left toolDetailContainer">
+                    <div class="toolLabel">Project</div>
+                    <div class="toolDataValue">{{hoveredPrj?.name | uppercase}}</div>
+                </div>
+                
+                <!-- <div class="toolDetailContainer">
+                   <div class="toolLabel">Tool</div> 
+                    <div class="toolDataValue">{{toolName | uppercase}}</div>
+                </div> -->
+
+                <div class="toolDetailContainer clearfix" *ngFor="let toolObj of toolKeysObject">
+                    <div class="toolLabel">{{toolObj?.displayName}}  </div>
+                    <div class="toolDataValue" *ngIf="toolObj?.type != 'link' && toolObj?.type != 'string_link'">{{toolData[toolObj.key]}}</div> 
+                    <div class="toolDataValue breakWork" (click)="goToPage(toolObj?.key)" *ngIf="toolObj?.type == 'link'">
+                       <a class="anchorLinkColor">{{toolObj?.displayValue}}</a> 
+                    </div>
+                    <div class="toolDataValue breakWork" (click)="goToPage(toolObj?.differentKey)" *ngIf="toolObj?.type == 'string_link'">
+                        <a class="anchorLinkColor">{{toolData[toolObj.key]}}</a> 
+                    </div>
+                </div>
+
+                <div class="toolDetailContainer clearfix" *ngIf="!toolData">
+                    <p clas="warning">No Data from Database</p>
+                </div>
+            </div>
+          </div>
+      </div>  
+    </div>
+</div>        

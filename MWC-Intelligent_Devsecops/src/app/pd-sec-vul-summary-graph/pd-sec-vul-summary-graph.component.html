@@ -1,0 +1,21 @@
+<div class="pdGraphWidget">
+    <div class="pdGraphHeader">Security Vulnerabilities Summary</div>
+    <div class="pdGraphBody">
+        <div *ngIf="error" class="dataBaseError"> No Data from Database</div>
+        <div class="graphCopntainer"  *ngIf="secVulnerabilitySummaryGraph.length > 0">
+            <ngx-charts-line-chart
+                [results]="secVulnerabilitySummaryGraph"
+                [scheme]="colorScheme"
+                [xAxis]="true"
+                [yAxis]="true"
+                [legend]="true"
+                [legendPosition]= "'below'"
+                [showXAxisLabel]="false"
+                [showYAxisLabel]="false"
+                [xAxisLabel]="xAxisLabel"
+                [yAxisLabel]="yAxisLabel"
+                [legendTitle]="''">
+            </ngx-charts-line-chart>
+        </div>
+    </div>
+</div>

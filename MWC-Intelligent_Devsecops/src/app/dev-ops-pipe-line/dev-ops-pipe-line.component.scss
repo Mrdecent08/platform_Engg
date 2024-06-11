@@ -1,0 +1,281 @@
+.widget {
+    background-color: #ffffff;
+    height: auto;
+    width: 100%;
+    padding: 15px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 4px #8C94A51A;
+    border-radius: 6px;
+}
+.widgetBody {
+    width: 100%;
+    min-height: 200px;
+    height: auto;
+}
+.widgetHeader{
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+.stageName {
+    padding: 5px;
+    font-size: 14px;
+    text-align: center;
+    word-break: break-word;
+    color: #4D4F5C;
+}
+.dot {
+    height: 15px;
+    width:  15px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 5px #00000040;
+    border: 1px solid #707070;
+    opacity: 1;
+    background-color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .leftLine {
+  position:relative;
+ // background-color: #FF5252;
+  border: 1px solid #DCDCE5;
+
+  width: calc(50% - 8px);
+  height: 2px;
+  line-height: 2px;
+  margin-bottom: 7px;
+  display: inline-block;
+  //right: -2px;
+  }
+.paddingBtwProjects {
+    padding: 10px !important;
+}
+
+.noPadding {
+    padding: 0;
+}
+.toolName {
+    font-size: 16px;
+    font-weight: 400;
+}
+.timelineBox {
+   // background-color: #79C450;
+    height: 100%;
+    text-align: center;
+    width: 96%;
+}
+.fullWidthBox {
+    width: 100%;
+}
+.timelinePrjBox {
+    height: 100%;
+    text-align: center;
+}
+.prjNamePadding {
+    padding: 0 5px;
+}
+.textInTimeLineBox {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    word-break: break-all;
+    padding: 0 5px;
+    font-size: 14px;
+    font: Regular 12px/16px Roboto;
+    letter-spacing: 0;
+    color: black;
+}
+.firstColumn {
+    position: relative;
+    width: 4%;
+    display: inline-block;
+}
+.secondColumn {
+    position: relative;
+    width: 76%;
+    display: inline-block;
+}
+.expandColumn {
+    width: 96%;
+}
+.hideColumn {
+    display: none;
+}
+.thirdColumn {
+    position: relative;
+    width: 20%;
+    display: inline-block;
+}
+.blockWidth {
+    width: 13%;
+    display: inline-block;
+}
+/* .statusOfBuild {
+    width: 10%;
+    display: inline-block;
+} */
+.chartXaxisLegend {
+    width: 90%;
+    text-align: center;
+    //font-weight: 900;
+    margin: 10px 0;
+    font-size: 16px;
+}
+.chartYaxisLegend {
+    position: absolute;
+    top: 200px;
+    min-width: 200px;
+    left: 30%;
+    /* Border is the new background */
+    background: none;
+  
+    /* Rotate from top left corner (not default) */
+    transform-origin: 0 0;
+    transform: rotate(-90deg);
+    font-size: 16px;
+    //font: Regular 15px/40px Roboto;
+    letter-spacing: 0;
+    color: #373640;
+}
+.stagesCursor {
+    cursor: pointer;
+}
+.detailBox {
+    width: 90%;
+    margin: 0 auto;
+    border: 2px solid black;
+    border-radius: 5%;
+    padding: 15px;
+    height: auto;
+}
+.hoverBoxText{
+    word-wrap: break-word;
+}
+.hvrBxNumBox {
+    width: 50%;
+    float: left;    
+    padding: 5px;
+    float: left;
+    text-align: center;
+}
+.hvrBxFooter {
+    margin-bottom: 10px;
+    clear: both;
+}
+.thirdColumn .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top:  10%;
+  right: 95%;
+  margin-top: -5px;
+  border-width: 15px;
+  border-style: solid;
+  border-color: transparent black transparent transparent;
+  }
+
+.thirdColumn .tooltiptext0::after {
+    top: 5%;
+}
+.thirdColumn .tooltiptext1::after {
+    top: 20%;
+}
+.thirdColumn .tooltiptext2::after {
+    top: 30%;
+}
+.thirdColumn .tooltiptext3::after {
+    top: 40%;
+}
+.thirdColumn .tooltiptext4::after {
+    top: 55%;
+}
+.thirdColumn .tooltiptext5::after {
+    top: 65%;
+}
+.thirdColumn .tooltiptext6::after {
+    top: 75%;
+}
+.failure {
+    background-color: #f94667;
+}
+.success {
+    background-color: #79C450;
+}
+.notExecuted {
+    background-color: #E5E5EF;
+}
+.failureFont {
+    color: #f94667;
+}
+.successFont {
+    color: #79C450;
+}
+.notExecutedFont {
+    color: #0088FF;
+}
+.thirdColumn .SUCCESS::after { 
+    border-color: transparent #79C450 transparent transparent;
+}
+.thirdColumn .FAILED::after, .thirdColumn .ABORTED::after { 
+    border-color: transparent #FF5252 transparent transparent;
+}
+.SUCCESS {
+    border: 2px solid #79C450;
+}
+.FAILED, .ABORTED {
+    border: 2px solid #FF5252;
+}
+.toolLabel {
+    font-size: 14px;
+    margin-bottom: 1px;
+}
+.toolDataValue {
+    font-size: 14px;
+    font-weight: 400;
+}
+ .toolDetailContainer{
+    margin-bottom: 10px;
+    clear: both;
+ }
+ .clearfix:after{
+    content:".";
+    display:block;
+    height:0;
+    clear:both;
+    visibility:hidden;
+}
+
+.warning {
+    color: #FF5252;
+}
+.breakWork {
+    word-wrap: break-all;
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+}
+.prjStatusBold {
+    font-weight: 400;
+}
+.rowCustom {
+    display: flex;
+    flex-wrap: wrap;
+}
+.toolImageContainer {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.closeContainerDevPipepline {
+    float: right;
+    cursor: pointer;
+    text-align: center;
+    color: #333333;
+    width: 20px;
+    font-size: 12px;
+    height: 20px;
+    border-radius: 50%;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #D8D8D8;
+    opacity: 1;  
+}
+.anchorLinkColor {
+    color: #0088FF;
+}

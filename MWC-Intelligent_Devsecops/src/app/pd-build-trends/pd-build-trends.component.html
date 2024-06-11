@@ -1,0 +1,29 @@
+<div class="overView">
+    <div class="overViewHeading">
+        <div class="title"><h3>Build Trends</h3></div>
+        <!-- <div class="dropdown pull-right">
+            <div class="dropdown-toggle" (click)="openDropdown()">Select Period
+            <span class="caret"></span></div>
+            <ul class="dropdown-menu" [ngClass] = "{'openDropdown' : expandDropDown}">
+                <li class="dropDownItem">6 Months</li>
+                <li class="dropDownItem">1 Months</li>
+                <li class="dropDownItem">1 week</li>
+            </ul>
+        </div> -->
+    </div>
+    <div class="overViewBody" *ngIf="chartData?.length > 0">
+            <ngx-charts-bar-vertical 
+                [customColors]="customColors" 
+                [results]="chartData" 
+                [gradient]="gradient" 
+                [xAxis]="true"
+                [yAxis]="true" 
+                [legend]="false" 
+                [showXAxisLabel]="true" 
+                [showYAxisLabel]="true" 
+                [xAxisLabel]="'Build Number'"
+                [yAxisLabel]="'Build Stages'">
+            </ngx-charts-bar-vertical>
+    </div>
+</div>
+        

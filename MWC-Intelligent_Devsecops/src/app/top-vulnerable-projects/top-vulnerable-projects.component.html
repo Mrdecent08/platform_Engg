@@ -1,0 +1,20 @@
+<div class="widget">
+    <div class="widgetHeader">
+        <h3>Top Projects by Vulnerability</h3>
+        <p>{{date | date:'MMMM d, y, h:mm:ss zzzz'}}</p>
+    </div>
+    <div class="widgetBody" *ngIf="vulnerablePrjsChartData.length > 0">
+        <ngx-charts-bar-horizontal
+            [scheme]="colorScheme"
+            [results]="vulnerablePrjsChartData"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            [showXAxisLabel]="true"
+            [showYAxisLabel]="true">
+        </ngx-charts-bar-horizontal>
+    </div>
+</div>
+<!-- [customColors]="showGraphCusVmsColors[i]" -->

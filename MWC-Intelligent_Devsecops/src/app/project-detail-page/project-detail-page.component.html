@@ -1,0 +1,47 @@
+<div class="prjDtlPage" >
+    <h3 class="prjDtlTitle">{{projectName}}</h3>
+
+    <div class="row wigetMargin" >
+        <div class="col-md-8">
+            <app-pd-vul-bugs-codesmell [projectName]="projectName"></app-pd-vul-bugs-codesmell>
+        </div>
+        <div class="col-md-4">
+            <app-pd-info-in-cards [projectName]="projectName" (openModal)="openModalDialog($event)"></app-pd-info-in-cards>
+        </div>
+    </div>
+
+    <div class="row wigetMargin" >
+        <div class="col-md-3">
+            <app-pd-sec-vul-summary-graph [projectName]="projectName"></app-pd-sec-vul-summary-graph>
+        </div>
+        <div class="col-md-6">
+            <app-pd-test-optimization [projectName]="projectName"></app-pd-test-optimization>
+        </div>
+        <div class="col-md-3">
+            <app-pd-deployment-statistics [projectName]="projectName"></app-pd-deployment-statistics>
+        </div>
+    </div>
+    
+    <div class="row wigetMargin" >
+        <div class="col-md-12">
+            <app-pd-current-build [projectName]="projectName"></app-pd-current-build>
+        </div>
+    </div>
+    <!-- <div class="row wigetMargin" >
+        <div class="col-md-6">
+            <app-pd-vulnerabilites [projectName]="projectName"></app-pd-vulnerabilites>
+        </div>
+        <div class="col-md-6" >
+            <app-pd-build-trends [projectName]="projectName"></app-pd-build-trends>
+        </div>
+    </div>
+
+    <div class="row wigetMargin" >
+        <div class="col-md-12">
+            <app-pd-build-info [projectName]="projectName"></app-pd-build-info>
+        </div>
+    </div> -->
+</div>
+<div class="modal-background" *ngIf="isModalOpen"></div>
+<app-modal-dialog *ngIf="isModalOpen" class="openModalCss" [inputData]="modalInputData" (modalDialogClose)="closeModalDialog()"></app-modal-dialog>
+

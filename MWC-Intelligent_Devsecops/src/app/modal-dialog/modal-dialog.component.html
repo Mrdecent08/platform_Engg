@@ -1,0 +1,35 @@
+<div class="modalDialog">
+    <div class="modalDialogHeader">
+        Production Issues
+        <div class="closeContainer" (click)="closeModal()">
+           x
+        </div>
+    </div>
+    <div class="modalDialogBody">
+        <table class="modalTable">
+            <tr class="modalTableHeader">
+               <!-- <th class="indexCell"> # </th> -->
+              <!--  <th *ngFor="let head of headers" class="modalTableHeaderCell"> {{displayHeaders[head]}}</th> -->
+               <th *ngFor="let keyObj of tableHeaderObj" class="modalTableHeaderCell"> {{keyObj['displayName']}} </th>
+            </tr>
+            <tr *ngFor="let rowBody of responseObj; let i = index" class="modalTableRow">
+                <!-- <td class= "indexCell"> {{i+1}} </td> -->
+                <td *ngFor="let keyObj of tableHeaderObj" class="modalTableRowCell">
+                    <span *ngIf="keyObj['key'] != 'status'">  {{rowBody[keyObj["key"]]}}</span>
+                    <span *ngIf="keyObj['key'] == 'status'"> 
+                        <div>
+                            <img src="assets/images/pass.svg" class="imagePadding" *ngIf="(rowBody[keyObj['key']] == 'fixed')">
+                        </div>
+                        
+                         <div *ngIf="(rowBody[keyObj['key']] == 'fixed')">
+                             Patch Applied
+                         </div>
+                         <div *ngIf="(rowBody[keyObj['key']] != 'fixed')">
+                               New
+                            </div>
+                    </span>
+                </td>
+            </tr>
+        </table>
+    </div>   
+</div>

@@ -1,0 +1,138 @@
+.projectsLiveWidget{
+    background-color: white;
+    width:100%;
+    height: 600px;
+    padding:10px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 4px #8C94A51A;
+    border-radius: 6px;
+}
+.prjLiveHeader {
+    height: 40px;
+    font: Regular 15px/40px Roboto;
+    letter-spacing: 0;
+    color: #373640;
+}
+
+.timelinePrjBox {
+    height: 100%;
+    text-align: left;
+}
+.prjNamePadding {
+    padding: 0 5px;
+}
+.textInTimeLineBoxPL {
+    position: relative;
+    top: 50%;
+    transform: translateY(-20%);
+    word-break: break-all;
+    padding: 0 5px;
+    font-size: 12px;
+}
+
+.prjNameWidth {
+    width: 40%;
+    display: inline-block;
+}
+.titleLegend {
+    width: 30%;
+    display: inline-block;
+}
+.dataWidth {
+    width: 70%;
+    display: inline-block; 
+}
+.paddingBtwProjects {
+    padding: 10px;
+}
+.PLnorderedList {
+    list-style-type: none;
+    margin: 10px 0;
+    padding: 0;
+    li {
+        display: inline-block;
+        padding: 0 5px;
+        cursor: pointer;
+    }
+}
+.PLlabelText {
+    padding: 0 15px !important;
+    color: #4D4F5C;
+}
+
+.sprintLine{
+    display: inline-grid;
+}
+.stageName {
+    padding: 5px;
+    font-size: 12px;
+    text-align: center;
+    word-break: break-word;
+    color: #4D4F5C;
+}
+.leftLine {
+    position:relative;
+    background-color: #DCDCE5;
+    width: 100%;
+    height: 2px;
+    line-height: 2px;
+    margin-bottom: 7px;
+    display: inline-block;
+    /*right: -2px;*/
+  /*right: -2px;*/
+}
+.projectLine{
+    display:inline-block;
+    vertical-align: top;
+}
+.dot {
+    height: 15px;
+    width:  15px;
+    /*border: 2px solid black;*/
+    background-color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+}
+.rightLine {
+    position:relative;
+    background-color: #DCDCE5;
+    width: calc(50% - 8px);
+    height: 2px;
+    line-height: 1px;
+    margin-bottom: 7px;
+    display: inline-block;
+    /*right: -2px;*/
+  /*right: -2px;*/
+}
+.topLine {
+    position:relative;
+    transform-origin: 0 0;
+    transform: rotate(-90deg);
+    background-color: #DCDCE5;
+    width:50%;
+    height: 2px;
+    line-height: 1px;
+    margin-bottom: 7px;
+    display: inline-block;
+    /*right: -2px;*/
+  /*right: -2px;*/
+}
+.bottomLine {
+    position:relative;
+    transform-origin: 0 0;
+    transform: rotate(-90deg);
+    background-color: #DCDCE5;
+    width:100%;
+    height: 2px;
+    line-height: 1px;
+    margin-bottom: 7px;
+    display: inline-block;
+    /*right: -2px;*/
+  /*right: -2px;*/
+}
+.success{
+    border: 2px solid green;
+}
+.failure{
+    border: 2px solid red;
+}
