@@ -21,11 +21,6 @@ public class JiraService {
 	@Value("${jira.url}")
 	private String jiraUrl;
 	
-	@Value("${jira.url}")
-	private String jiraUsername;
-	
-	@Value("${jira.password}")
-	private String jiraPassword;
 	
 	private final RestTemplate restTemplate;
 
@@ -39,7 +34,7 @@ public class JiraService {
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
-		headers.setBasicAuth(jiraUsername, jiraPassword);
+		headers.set("Authorization","Basic YWJoaXNoZWsudmVsaWNoYWxhQHRjcy5jb206QVRBVFQzeEZmR0YwLVBRamJoaXUtUWdMTUptcUZ0dUhlc2NrZWN6eHUycEo2Y0FsaTk3X3gzWFlWSmQzeHNzNjNtSUFWMVBzOE1aM0lQbi1TU1dwaTMwaDlLbzd1QTNOMmszSEhnMFFIUlltT1dXMnJlOVNONUQ3M0xaV3lxb2dzbGdzUUMwcWQzSTBFTVh4YTRwTXRiZTh1ajB5M0cyc250M0hUZllJUDgwYUVFTWxrU0FBenFjPTcyNTYxNzFE");
 		
 		Map<String,Object> fields = new HashMap<>();
 		fields.put("project", Map.of("key",ticket.getProjectKey()));
