@@ -1,0 +1,23 @@
+<div class="pdGraphWidget">
+    <div class="pdGraphHeader">Build Trends</div>
+    <div class="pdGraphBody">
+        <div *ngIf="error" class="dataBaseError"> No Data from Database</div>
+        <div class="graphCopntainer"  *ngIf="deploymentStatisticsGraphData.length > 0">
+                <ngx-charts-bar-vertical-2d
+                [results]="deploymentStatisticsGraphData"
+                [scheme]="colorScheme"
+                [xAxis]="true"
+                [yAxis]="true"
+                [legend]="true"
+                [barPadding]="0"
+                [legendPosition]= "'below'"
+                [showXAxisLabel]="false"
+                [showYAxisLabel]="false"
+                [xAxisLabel]="xAxisLabel"
+                [yAxisLabel]="yAxisLabel"
+                [legendTitle]="''">
+            </ngx-charts-bar-vertical-2d>
+        </div>
+        </div>
+        
+</div>

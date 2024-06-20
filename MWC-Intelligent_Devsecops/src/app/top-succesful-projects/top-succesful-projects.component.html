@@ -1,0 +1,18 @@
+<div class="widget">
+    <div class="widgetHeader">
+        <h3>Last Successful Build of Projects</h3>
+        <p>{{date | date:'MMMM d, y, h:mm:ss zzzz'}}</p>
+    </div>
+    <div class="widgetBody">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="tableheader">Project</div>
+                <div *ngFor="let project of lastBuildData" class="rowBoby">{{project?.project}}</div>
+            </div>
+            <div class="col-md-6">
+                <div class="tableheader">Release Date</div>
+                <div *ngFor="let project of lastBuildData" class="rowBoby">{{project?.date}}</div>
+            </div>
+        </div>
+    </div>
+</div>

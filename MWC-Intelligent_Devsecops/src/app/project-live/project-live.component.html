@@ -1,0 +1,57 @@
+<div class="projectsLiveWidget">    
+    <div class="prjLiveHeader">
+        Project Deployment Status
+    </div>
+    <div *ngIf="error" class="dataBaseError"> No Data from Database</div>
+    <div *ngIf="!error">
+        <div *ngFor="let project of liveData" class="paddingBtwProjects">
+                <div class="prjNameWidth prjNamePadding stagesCursor">
+                    <div class="timelinePrjBox">
+                        <div class="textInTimeLineBoxPL">{{project?.project}}</div>
+                    </div>
+                </div>
+                <div class="projectLine noPadding stagesCursor" *ngFor="let sprint of project?.sprints" [style.width.%]="widthx"  >   
+                    <div class="timelineBoxPL " [ngClass]="{'deployed':(sprint?.status == 'deployed'), 'notDeployed': (sprint?.status == 'failed'), 'notExecuted':(sprint?.status == 'NOT_EXECUTED' || sprint?.status == 'ABORTED')}" (mouseover)="displayTooltip(sprint, event)">      
+                    </div>
+
+                    <!-- tooltip-class="tooltipBG" [shadow]="false" [tooltip]="HtmlContent" content-type="template" placement="top" -->
+                    <!-- <ng-template #HtmlContent>
+                        <div >{{sprint?.sprintname}}</div>
+                        <div >Deployment: {{sprint?.status}}</div>
+                    </ng-template> -->
+                </div>
+            <!--  <div class="blockWidth noPadding stagesCursor" [style.width.%]="widthx" *ngFor="let stage of project?.stages" (click)="getToolDetails(project, stage?.tool, i)" >
+                    <div class="timelineBox" [ngClass]="{'success':(stage?.status == 'SUCCESS'), 'failure': (stage?.status == 'FAILED'), 'notExecuted':(stage?.status == 'NOT_EXECUTED' || stage?.status == 'ABORTED')}">
+                        <div class="textInTimeLineBox" *ngIf="stage?.duration != null">{{stage?.duration}} Sec</div>
+                        <div class="textInTimeLineBox" *ngIf="stage?.duration == null"></div>
+                    </div>
+                </div>   -->            
+        </div>
+        <div class="prjNameWidth"></div>
+        <div class="sprintLine" *ngFor="let sprint of sprintData, let i = index"
+                    [style.width.%]="widthx" 
+                    style="font-size: 20px;">
+                <div class="topPart">                    
+                    <div class="leftLine"></div>
+                </div>
+            <div class="stageName">
+                <div>S {{i+1}}</div> 
+            </div>
+        </div>
+        <div class="titleLegend"></div>
+        <div class="dataWidth">
+            <div class="sprintClass">
+            Sprint
+            </div>
+        </div>
+        <div class="titleLegend"></div>
+        <div class="dataWidth">
+            <ul class="PLnorderedList">
+                <li class="square notDeployed"></li>
+                <li class="PLlabelText">Failed</li>
+                <li class="square deployed"></li>
+                <li class="PLlabelText">Deployed</li>
+            </ul>
+        </div>
+    </div>
+</div>

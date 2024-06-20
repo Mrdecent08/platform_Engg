@@ -1,0 +1,262 @@
+.upComingRleaseWidget {
+    background-color: #ffffff;
+    height: 600px;
+    width: 100%;
+    padding: 15px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 4px #8C94A51A;
+    border-radius: 6px;
+}
+.upComingRleaseWidHeader {
+    height: 40px;    
+    line-height: 40px;
+    font-size: 15px;
+    background-color: #ffffff;
+    text-align: left;
+    font: Regular 15px/40px Roboto;
+    letter-spacing: 0;
+    color: #373640;
+    opacity: 1;
+}
+.upComingRleaseWidBody {
+  width: 100%;
+  height: 530px;
+  background-color: #ffffff;
+  position: relative;
+ // padding: 15px;
+}
+
+.upComingRleaseCards {
+    cursor: pointer;
+    position: relative;
+    vertical-align: top;
+    display: inline-block;
+    height: 80px;
+    padding: 5px;
+    box-sizing: border-box;
+   // background: #9C9EA2 0% 0% no-repeat padding-box
+    background: #F7F7F7 0% 0% no-repeat padding-box;
+    /* border-right: 1px solid #AAAAAA; */
+}
+/* .upRelCardsContainer {
+    height: 100%;
+    border-right: 1px solid #AAAAAA;
+    margin-right: -5px;
+} */
+.projectName {
+    padding: 0 5px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    font: Medium 14px/20px Roboto;
+    letter-spacing: 0;
+    color: #333333;
+    opacity: 1;
+}
+.projectUPRLabels {
+    float: left;
+    text-align: left;
+    font-size: 12px;
+    font: Regular 11px/20px Roboto;
+    letter-spacing: 0;
+    opacity: 1;
+    padding: 0 5px;
+}
+.projectUPRvalue {
+    float: left;
+    text-align: left;
+    padding: 0 5px;
+    font-size: 12px;
+    font: Regular 11px/20px Roboto;
+    letter-spacing: 0;
+    color: #697780;
+}
+.bugCards {
+    display: inline-block;
+    text-align: center;
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 2px;
+    border: 1px solid black;
+}
+.secVulnerabHeader {
+    height: 25px;    
+    line-height: 25px;
+    text-align: left;
+    font-size: 13px;
+    font: Regular 13px/40px Roboto;
+    letter-spacing: 0;
+    color: #333333;
+    opacity: 1;
+    background-color: #ffffff;
+}
+.prjRiskBox {
+    padding: 5px;
+    border: 1px solid black;
+    word-break: break-all;
+}
+.selectedProject {
+    background-color: #ffffff;
+    border-bottom: 2px solid #52AAF7;
+    /* border-left: none;
+    border-right: 1px solid #AAAAAA;; */
+}
+.toolTipUPCR::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    margin-left: -25%;
+    border-width: 7px;
+    border-style: solid;
+    border-color: #52AAF7 transparent transparent transparent;
+}
+.wigetMargin {
+    margin: 10px 0;
+}
+.graphContainer {
+    width: 100%;
+    height: 400px;
+    position: relative;
+}
+.graphContainerTO {
+    width: 100%;
+    height: 340px;
+    position: relative;
+}
+.arrowCenterAlign {
+    cursor: pointer;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #ffffff;
+}
+
+.whiteBg {
+    background-color: #ffffff;
+    border: none;
+}
+
+.loader {
+    border: 5px solid #f3f3f3; /* Light grey */
+    border-top: 5px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+    margin: 0 auto;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .starWidth {
+      float: left;
+      text-align: left;
+      padding: 0 5px;
+  }
+
+  .defectsContainer {
+    padding: 5px;
+      width: 100%;
+      height: 200px;
+      border-bottom: 1px solid #D9E1E6;
+    //  background-color: #697780;
+  }
+  .codeSmellContainer{
+      padding: 5px;
+      width: 100%;
+      height: 200px;  
+  }
+  .legend-label-text {
+     color: black;
+     text-align: left;
+  }
+  .chart-legend .legend-labels{
+      background-color: #ffffff !important;
+  }
+  .vulnerabilitiesContainer {
+      width: 100%;
+      height: 370px;
+  }
+  .upCReleaseColumn1 {
+      width: calc(40% - 10px);
+      float: left;
+      margin: 0 5px;
+      padding: 0 5px;
+  }
+  .upCReleaseColumn2 {
+    width: calc(26% - 10px);
+    float: left;
+    margin: 0 5px;
+    padding: 0 5px;
+    border: 1px solid #D9E1E6;
+    border-top: none;
+    border-bottom: none;
+}
+.upCReleaseColumn3 {
+    width: calc(34% - 10px);
+    float: left;
+    margin: 0 5px;
+    padding: 0 5px;
+}
+  .tick {
+    background-color: #d8d8d8 !important;
+    word-break: break-word !important;
+}
+.clearfix {
+    clear: both;
+}
+.UPRnorderedList {
+    list-style-type: none;
+    margin: 10px 0;
+    padding: 0;
+    clear: both;
+    li {
+        display: inline-block;
+        padding: 0 5px;
+    }
+}
+.noMargin{
+    margin: 2px;
+}
+.UPRlabelText {
+    padding: 0 10px !important;
+    color: #4D4F5C;
+    text-align: left;
+    font-size: 12px;
+    font: Regular 10px/20px Roboto;
+    letter-spacing: 0;
+    color: #4D4F5C;
+    vertical-align: top;
+}
+.square {
+    height: 15px;
+    width:  15px;
+    display: inline-block;
+}
+.critical{
+    background-color: #F06293;
+}
+.major {
+    background-color: #FFB265;
+}
+.minor {
+    background-color: #939FED; 
+}
+.info {
+    background-color: #17a2b8;
+}
+.noDataSecVulnerabilities {
+    text-align: center;
+    height: 400px;
+    line-height: 400px;
+}
+.nodefectsContainer {
+    width: 100%;
+    height: 200px;
+    line-height: 200px;
+    border-bottom: 1px solid #D9E1E6;
+    text-align: center;
+}

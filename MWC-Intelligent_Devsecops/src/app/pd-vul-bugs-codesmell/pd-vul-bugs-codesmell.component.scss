@@ -1,0 +1,357 @@
+.secvulDefectsCSWidget {
+    background-color: #ffffff;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 4px #8C94A51A;
+    border-radius: 6px;
+    height: 550px;
+}
+.padding {
+    padding: 15px;
+}
+.secvulDefCSHeader {
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #F7F7F7;
+}
+.secVulDefUL {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #F7F7F7;
+    li {
+        display: inline-block;
+        padding: 0 10px;
+        text-align: left;
+        font-size: 15px;
+        font: Regular 15px/40px Roboto;
+        letter-spacing: 0;
+        color: #000000;
+        opacity: 1;
+    }
+}
+.cursor {
+    cursor: pointer;
+}
+.secDefCSsmHeading li {
+    font-size: 12px;
+}
+.active {
+    border-bottom: 2px solid #52AAF7;
+    background-color: #ffffff;
+    position: relative;
+}
+.secvulDefCSBodySummary {
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #F7F7F7;
+}
+.imgContainer {
+    padding: 0 10px;
+}
+
+
+.dataTableHeader {
+   // background-color: rgba(94, 162, 144, 0.3);
+  // padding: 0 10px;
+    /* height: 32px;
+    line-height: 32px; */
+    text-align: left;
+    padding: 8px 15px;
+    font-size: 11px;
+    font: Medium 11px/40px Roboto;
+    letter-spacing: 0;
+    color: #4D4F5C;
+    opacity: 1;
+    vertical-align: -webkit-baseline-middle;
+}
+.dataTableHeader:hover {
+    border-right: 1px solid #4D4F5C;
+}
+.dataTableRCell{
+    text-align: left;
+    padding: 0 15px;
+    vertical-align: -webkit-baseline-middle;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.tableInputContainer {
+   padding: 5px 0;
+   width: 80%;
+   
+}
+.tableInput{
+    height: 30px;
+    width: 100%;
+    border-radius: 4px;
+    border: solid 1px #dbdbdb; 
+}
+
+.logInsightTable{
+    width: 99%;
+ //   height: auto;
+    height: 420px;
+}
+.datatable-icon-up:before {
+   content: '@' !important;
+   height: 45px;
+   color: red;
+}
+
+.preNxtBtn{
+  padding: 0 10px;
+  cursor: pointer;
+  margin: 0 5px;
+  background-color: #ffffff;
+  border: none;
+}
+.NameKey{
+    color: #ffffff;
+}
+.selectInput {
+    cursor: pointer;
+    background-color: #ffffff;
+    width: 50px;
+    border: none;
+    padding: 5px;
+    height: 30px;
+    line-height: 30px;
+}
+.optionInput {
+    cursor: pointer;
+    background-color: #ffffff;
+    padding: 5px;
+}
+.evenRow {
+    background-color: #F7F7F7;
+}
+.tableRow {
+    border: 1px solid #DCDCE5;
+    /* padding: 8px 2px; */
+    //height: 40px;
+   // height: auto;
+    box-sizing: border-box;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #DCDCE5;
+    border-radius: 4px;
+    text-align: left;
+    font-size: 12px;
+    font: Regular 12px/40px SF Compact Display;
+    letter-spacing: 0;
+    color: #333333;
+    opacity: 1;
+}
+.tableFooter {
+    padding : 4px 0;
+    width: 100%;
+    text-align: right;
+    font-size: 12px;
+    font: Regular 12px/40px SF Compact Display;
+    letter-spacing: 0;
+    color: #333333;
+    opacity: 1; 
+}
+.tableFooterCol {
+    padding: 7px 0;
+}
+
+.tooltiptextPd_vul_bugs_cs::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    margin-left: -50%;
+    border-width: 8px;
+    border-style: solid;
+    border-color: #52AAF7 transparent transparent transparent;
+}
+.btnT{
+    box-sizing: border-box;
+    color: #ffffff;
+    padding: 5px;
+    border-radius: 3px;
+    display: block;
+    min-width: 75px;
+    max-width: 100px;
+    text-align: center;
+}
+.criBtn {
+    padding: 5px;
+    border-radius: 3px;
+    background-color: #f94667;
+}
+.majorBtn {
+    padding: 5px;
+    border-radius: 3px;
+    background-color: #FFB265;
+}
+.minorBtn {
+    padding: 5px;
+    border-radius: 3px;
+    background-color: #939FED;
+}
+.blockerBtn {
+    padding: 5px;
+    border-radius: 3px;
+    background-color: #5A5A5A;
+}
+.infoBtn {
+    padding: 5px;
+    border-radius: 3px;
+    background-color: #17a2b8!important;;
+}
+
+//table html css
+.tableContainer {
+    width: 100%;
+    height: 420px;
+    overflow: auto;
+}
+.modalTable {
+    display: table;
+    width: 100%;
+    height: auto;
+    max-height: 420px;
+    overflow: auto;
+}
+.modalTableHeader {
+    display: table-header-group;
+    border-top: 1px solid #DCDCE5;
+    border-bottom: 1px solid #DCDCE5;
+    
+}
+.modalTableHeaderCell {
+    display: table-cell;
+    padding: 5px 10px;
+    cursor: pointer;
+    /* min-width: 150px; */
+    font-size: 12px;
+}
+.modalTableRow {
+    display: table-row;
+    border: 1px solid #DCDCE5;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 4px #8C94A51A;
+    border-radius: 4px;
+}
+.modalTableRow:nth-child(even) {
+    background: #F7F7F7 0% 0% no-repeat padding-box;
+    border-radius: 4px;
+    opacity: 1;
+}
+.modalTableRowCell {
+    display: table-cell;
+    padding: 5px 10px;
+    /* min-width: 150px; */
+    font-size: 14px;
+}
+.indexCell {
+    max-width: 75px !important;
+    display: table-cell;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-top-left-radius: 10px;
+}
+
+.noData {
+    min-height: 60px;
+    padding: 15px;
+    line-height: 60px;
+}
+
+//table html css end
+
+
+/* .numberBtn {
+    width: 30px;
+    height: 20px;
+    background-color: #52AAF7;
+    color: #ffffff;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+    display: inline-block;
+} */
+
+
+
+
+
+
+
+
+
+/* 
+.vulBugCSContainer {
+    background-color: #ffffff;
+    padding: 15px;
+    min-height: 120px;
+    height: auto;
+}
+.buildNumber {
+    font-size: 32px;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+.buildDescription {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 14px;
+}
+.buildInfoBlock{
+    width: 50%;
+    float: left;
+    height: 140px;
+}
+.vulCol {
+    width: 25%;
+    float: left;
+}
+.bugsCol {
+    width: 33%;
+    float: left;
+}
+.codesmellCol{
+    width: 50%;
+    float: left;
+}
+.currentVersionInfo {
+    background-color: #d8d8d8;
+    margin: 0;
+    border-radius: 5px;
+}
+.curVerRightCol {
+    width: 70%;
+    float: left;
+}
+.curVerLeftCol {
+    width: 30%;
+    float: left;
+}
+.currentVersionRows,.projectDetailRows {
+    padding: 2px;
+}
+.curVersionText {
+  font-size: 14px;
+}
+.curVersionNumber {
+  font-size: 32px;
+  margin: 10px 0;
+  text-align: center;
+}
+.verDetContainer {
+    height: 100%;
+}
+.verDetContent {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px;
+}
+.horzPadding {
+    padding: 0 10px;
+}
+.noramalFont {
+    font-size: 16px;
+} */
