@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auto-remediation-application
+  name: ar-metrics
   namespace: ar
   labels:
-    app: auto-remediation-application
+    app: ar-metrics
 spec:
   selector:
     matchLabels:
-      app: auto-remediation-application
+      app: ar-metrics
   template:
     metadata:
       labels:
-        app: auto-remediation-application
+        app: ar-metrics
     spec:
       containers:
-      - name: auto-remediation-application
-        image: srinivas080801/auto-remediation:latest
+      - name: ar-metrics
+        image: 10.63.16.153:32003/ar_metrics:latest
         ports:
         - containerPort: 8080
