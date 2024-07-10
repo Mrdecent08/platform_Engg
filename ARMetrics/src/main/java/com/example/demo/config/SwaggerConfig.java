@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,8 +25,8 @@ public class SwaggerConfig{
         }
         private ApiInfo apiInfo() {
                 return new ApiInfoBuilder()
-                                .title("Alert Hook")
-                                .description("Alert Hook From alert Manager")
+                                .title("Auto Remediation metrics")
+                                .description("Apis For Alerts Database")
                                 .version("1.0")
                                 .build();
         }
