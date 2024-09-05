@@ -16,6 +16,8 @@ spec:
     spec:
       containers:
       - name: ar-metrics
-        image: 10.63.20.34/ar_metrics:latest
+        image: 10.63.20.34:80/ar_metrics:latest
         ports:
         - containerPort: 8080
+      imagePullSecrets:
+      - name: regcred
