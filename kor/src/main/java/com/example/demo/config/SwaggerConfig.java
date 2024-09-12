@@ -25,8 +25,8 @@ public class SwaggerConfig{
         }
         private ApiInfo apiInfo() {
                 return new ApiInfoBuilder()
-                                .title("Auto Remediation metrics")
-                                .description("Apis For Alerts Database")
+                                .title("KOR")
+                                .description("Apis For kor reports")
                                 .version("1.0")
                                 .build();
         }
