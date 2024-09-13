@@ -67,7 +67,7 @@ public class JenkinsController {
     public ResponseEntity<ScanResponse> triggerCreateEnv() {
         try {
             
-            ResponseEntity<String> result = jenkinsOps.triggerJenkinsJob(createReportPipeline);
+            ResponseEntity<String> result = jenkinsOps.triggerPipeline();
             if (result.getStatusCode() == HttpStatus.OK && result.getBody().equalsIgnoreCase("success")) {
             	int buildNumber = Integer.valueOf(result.getBody());
                 String url = korController.getReportUrl(buildNumber);

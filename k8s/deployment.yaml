@@ -1,21 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auto-remediation-application
+  name: kor-application
   namespace: ar
   labels:
-    app: auto-remediation-application
+    app: kor-application
 spec:
   selector:
     matchLabels:
-      app: auto-remediation-application
+      app: kor-application
   template:
     metadata:
       labels:
-        app: auto-remediation-application
+        app: kor-application
     spec:
       containers:
-      - name: auto-remediation-application
-        image: srinivas080801/auto-remediation:latest
+      - name: kor-application
+        image: 10.63.20.34:80/kor:latest
         ports:
         - containerPort: 8080
+      imagePullSecrets:
+      - name: regcred
