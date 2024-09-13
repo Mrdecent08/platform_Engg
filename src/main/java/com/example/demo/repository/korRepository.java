@@ -10,7 +10,5 @@ import com.example.demo.entity.korReport;
 @Repository
 public interface korRepository extends JpaRepository<korReport, Integer>{
 
-	List<korReport> findAlertByAlertname(String alertName);
-
 
 }

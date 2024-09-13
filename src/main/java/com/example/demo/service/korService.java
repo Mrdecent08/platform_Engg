@@ -15,4 +15,6 @@ public interface korService {
 
 	korReport getReportById(int id);
 
+	String getReportUrl(int id);
+
 }

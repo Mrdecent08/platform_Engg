@@ -39,4 +39,9 @@ public class korController {
 	private korReport getReportById(@PathVariable int id) {
 		return korSer.getReportById(id);
 	}
+	
+	@GetMapping("/getReportUrl/{id}")
+	public String getReportUrl(@PathVariable int id) {
+		return korSer.getReportUrl(id);
+	}
 }

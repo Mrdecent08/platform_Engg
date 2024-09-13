@@ -11,25 +11,20 @@ import com.example.demo.repository.korRepository;
 import com.example.demo.service.korService;
 
 @Service
-public class korServiceImpl implements korService{
-	
-	private korRepository korRepo;
-	
-	
+public class korServiceImpl implements korService {
 
+	private korRepository korRepo;
+
+	
 	public korServiceImpl(korRepository korRepo) {
 		super();
 		this.korRepo = korRepo;
 	}
 
-
-
 	@Override
 	public List<korReport> getAllReports() {
 		return korRepo.findAll();
 	}
-
-
 
 	@Override
 	public String saveReport(korReport data) {
@@ -37,15 +32,23 @@ public class korServiceImpl implements korService{
 		return "Report Stored Successfully";
 	}
 
-
-
 	@Override
 	public korReport getReportById(int id) {
 		Optional<korReport> report = korRepo.findById(id);
-		if(report.isEmpty()) {
+		if (report.isEmpty()) {
 			throw new NoReportFoundException("Report does not exist !!! ");
 		}
 		return report.get();
 	}
 
+	@Override
+	public String getReportUrl(int id) {
+		Optional<korReport> report = korRepo.findById(id);
+		if (report.isEmpty()) {
+			throw new NoReportFoundException("Report does not exist !!! ");
+		}
+		return report.get().getUrl();
+	}
+
+	
 }
