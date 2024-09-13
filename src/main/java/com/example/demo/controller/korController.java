@@ -40,17 +40,19 @@ public class korController {
 	}
 	
 	@GetMapping("/getReportById/{id}")
-	private korReport getReportById(@PathVariable int id) {
+	private korReport getReportByBuildNumber(@PathVariable int id) {
 		return korSer.getReportById(id);
 	}
 	
 	@GetMapping("/getReportUrl/{id}")
-	public String getReportUrl(@PathVariable int id) {
+	public String getReportUrlByBuildNumber(@PathVariable int id) {
 		return korSer.getReportUrl(id);
 	}
 	
 	@PostMapping("/generateReport")
 	public String generateReport() {
-		return jenkinsSer.triggerPipeline();
+		int buildNumber = Integer.valueOf(jenkinsSer.triggerPipeline());
+		
+		return "Sample";
 	}
 }

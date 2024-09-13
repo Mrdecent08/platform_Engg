@@ -10,9 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.service.jenkinsService;
@@ -47,27 +45,17 @@ public class jenkinsServiceImpl implements jenkinsService{
 
 		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 		headers.setBasicAuth(base64Creds);
-		MultiValueMap<String, String> requestBody = new LinkedMultiValueMap<String, String>();
-
-		requestBody.add("sourceCode_url", "");
-		requestBody.add("branch", "");
-		requestBody.add("sourceCode_language", "");
-		requestBody.add("build_tool", "");
-		requestBody.add("code_quality_analysis", "");
-		requestBody.add("dockertag", "");
-		requestBody.add("environment", "");
-
-		HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
-		String Jenkinsurl = jenkinsurl + "/job/auto-healing" + "/buildWithParameters?token=" + token;
+		
+		String Jenkinsurl = jenkinsurl + "/job/kor" + "/build?token=" + token;
 		ResponseEntity<JsonNode> response = restTemplate.postForEntity(Jenkinsurl,
-				new HttpEntity<>(requestBody, headers), JsonNode.class);
+				new HttpEntity<>(headers), JsonNode.class);
 		String locationHeader = response.getHeaders().getFirst("Location");
 		String authHeaderValue = "Basic " + Base64.getEncoder().encodeToString((username + ":" + password).getBytes());
 		String buildNumber = RetrieveBuildNumber(locationHeader, authHeaderValue);
 		responsecode = response.getStatusCode().is2xxSuccessful();
 		if (responsecode) {
 			System.out.println("Job triggered successfully");
-			return "The job has been triggered";
+			return buildNumber;
 		}
 
 		else {

@@ -34,7 +34,7 @@ public class korServiceImpl implements korService {
 
 	@Override
 	public korReport getReportById(int id) {
-		Optional<korReport> report = korRepo.findById(id);
+		Optional<korReport> report = korRepo.findByBuildNumber(id);
 		if (report.isEmpty()) {
 			throw new NoReportFoundException("Report does not exist !!! ");
 		}
@@ -43,7 +43,7 @@ public class korServiceImpl implements korService {
 
 	@Override
 	public String getReportUrl(int id) {
-		Optional<korReport> report = korRepo.findById(id);
+		Optional<korReport> report = korRepo.findByBuildNumber(id);
 		if (report.isEmpty()) {
 			throw new NoReportFoundException("Report does not exist !!! ");
 		}

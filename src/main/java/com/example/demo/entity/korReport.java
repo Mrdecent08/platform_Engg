@@ -14,22 +14,26 @@ public class korReport {
 
 	private String timestamp;
 	
+	private int buildNumber;
+	
 	private String url;
 
 	public korReport() {
 		super();
 	}
 
-	public korReport(String timestamp, String url) {
+	public korReport(String timestamp, int buildNumber, String url) {
 		super();
 		this.timestamp = timestamp;
+		this.buildNumber = buildNumber;
 		this.url = url;
 	}
 
-	public korReport(int id, String timestamp, String url) {
+	public korReport(int id, String timestamp, int buildNumber, String url) {
 		super();
 		this.id = id;
 		this.timestamp = timestamp;
+		this.buildNumber = buildNumber;
 		this.url = url;
 	}
 
@@ -49,6 +53,14 @@ public class korReport {
 		this.timestamp = timestamp;
 	}
 
+	public int getBuildNumber() {
+		return buildNumber;
+	}
+
+	public void setBuildNumber(int buildNumber) {
+		this.buildNumber = buildNumber;
+	}
+
 	public String getUrl() {
 		return url;
 	}
@@ -59,8 +71,12 @@ public class korReport {
 
 	@Override
 	public String toString() {
-		return "kor_report [id=" + id + ", timestamp=" + timestamp + ", url=" + url + "]";
+		return "korReport [id=" + id + ", timestamp=" + timestamp + ", buildNumber=" + buildNumber + ", url=" + url
+				+ "]";
 	}
+
+	
+	
 	
 	
 	
