@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.korReport;
+import com.example.demo.service.jenkinsService;
 import com.example.demo.service.korService;
 
 
@@ -20,9 +21,12 @@ public class korController {
 
 	private korService korSer;
 	
-	public korController(korService korSer) {
+	private jenkinsService jenkinsSer;
+	
+	public korController(korService korSer,jenkinsService jenkinsSer) {
 		super();
 		this.korSer = korSer;
+		this.jenkinsSer = jenkinsSer;
 	}
 
 	@GetMapping("/reports")
@@ -43,5 +47,10 @@ public class korController {
 	@GetMapping("/getReportUrl/{id}")
 	public String getReportUrl(@PathVariable int id) {
 		return korSer.getReportUrl(id);
+	}
+	
+	@PostMapping("/generateReport")
+	public String generateReport() {
+		return jenkinsSer.triggerPipeline();
 	}
 }

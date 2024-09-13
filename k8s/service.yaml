@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: kor-service
-  namespace: ar
+  namespace: kor
 spec:
   type: NodePort
   selector:
@@ -11,3 +11,6 @@ spec:
     - port: 8080
       targetPort: 8080
       nodePort: 30228
+      
+      
+ 

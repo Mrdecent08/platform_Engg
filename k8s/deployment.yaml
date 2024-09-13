@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: kor-application
-  namespace: ar
+  namespace: kor
   labels:
     app: kor-application
 spec:
