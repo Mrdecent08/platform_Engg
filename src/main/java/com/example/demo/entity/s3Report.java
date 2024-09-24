@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class korReport {
+public class s3Report {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -18,18 +18,18 @@ public class korReport {
 	
 	private String url;
 
-	public korReport() {
+	public s3Report() {
 		super();
 	}
 
-	public korReport(String timestamp, int buildNumber, String url) {
+	public s3Report(String timestamp, int buildNumber, String url) {
 		super();
 		this.timestamp = timestamp;
 		this.buildNumber = buildNumber;
 		this.url = url;
 	}
 
-	public korReport(int id, String timestamp, int buildNumber, String url) {
+	public s3Report(int id, String timestamp, int buildNumber, String url) {
 		super();
 		this.id = id;
 		this.timestamp = timestamp;
@@ -71,9 +71,11 @@ public class korReport {
 
 	@Override
 	public String toString() {
-		return "korReport [id=" + id + ", timestamp=" + timestamp + ", buildNumber=" + buildNumber + ", url=" + url
+		return "s3Report [id=" + id + ", timestamp=" + timestamp + ", buildNumber=" + buildNumber + ", url=" + url
 				+ "]";
 	}
+
+	
 
 	
 	

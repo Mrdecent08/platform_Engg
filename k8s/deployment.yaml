@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kor-application
-  namespace: kor
+  name: s3-application
+  namespace: s3
   labels:
-    app: kor-application
+    app: s3-application
 spec:
   selector:
     matchLabels:
-      app: kor-application
+      app: s3-application
   template:
     metadata:
       labels:
-        app: kor-application
+        app: s3-application
     spec:
       containers:
-      - name: kor-application
-        image: 10.63.20.34:80/kor:latest
+      - name: s3-application
+        image: 10.63.20.34:80/s3:latest
         ports:
         - containerPort: 8080
       imagePullSecrets:

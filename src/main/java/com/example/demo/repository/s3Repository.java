@@ -6,12 +6,12 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.entity.korReport;
+import com.example.demo.entity.s3Report;
 
 @Repository
-public interface korRepository extends JpaRepository<korReport, Integer>{
+public interface s3Repository extends JpaRepository<s3Report, Integer>{
 
-	Optional<korReport> findByBuildNumber(int id);
+	Optional<s3Report> findByBuildNumber(int id);
 
 
 }

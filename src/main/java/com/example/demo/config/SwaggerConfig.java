@@ -25,8 +25,8 @@ public class SwaggerConfig{
         }
         private ApiInfo apiInfo() {
                 return new ApiInfoBuilder()
-                                .title("KOR")
-                                .description("Apis For kor reports")
+                                .title("S3 Bucket Policies")
+                                .description("Apis For Bucket Policy reports")
                                 .version("1.0")
                                 .build();
         }

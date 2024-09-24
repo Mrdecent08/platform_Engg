@@ -1,16 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: kor-service
-  namespace: kor
+  name: s3-service
+  namespace: s3
 spec:
   type: NodePort
   selector:
-    app: kor-application
+    app: s3-application
   ports:
     - port: 8080
       targetPort: 8080
-      nodePort: 30228
+      nodePort: 30728
       
       
  
