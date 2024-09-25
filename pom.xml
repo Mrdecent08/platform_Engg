@@ -9,9 +9,9 @@
                 <relativePath/> <!-- lookup parent from repository -->
         </parent>
         <groupId>com.example</groupId>
-        <artifactId>s3-policies</artifactId>
+        <artifactId>bucket-report</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <name>s3-policies</name>
+        <name>bucket-report</name>
         <description>Demo project for Spring Boot</description>
         <properties>
                 <java.version>1.8</java.version>

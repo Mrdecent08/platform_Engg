@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.example.demo.entity.reportEntity;
 import com.example.demo.entity.s3Report;
 import com.example.demo.service.jenkinsService;
+import com.example.demo.service.reportService;
 import com.example.demo.service.s3Service;
 import com.example.demo.service.s3Service;
 
@@ -36,13 +38,16 @@ public class s3Controller {
 	private s3Service s3Ser;
 
 	private jenkinsService jenkinsSer;
+	
+	private reportService reportSer;
 
 	RestTemplate restTemplate = new RestTemplate();
 
-	public s3Controller(s3Service s3Ser, jenkinsService jenkinsSer) {
+	public s3Controller(s3Service s3Ser, jenkinsService jenkinsSer, reportService reportSer) {
 		super();
 		this.s3Ser = s3Ser;
 		this.jenkinsSer = jenkinsSer;
+		this.reportSer = reportSer;
 	}
 
 	@GetMapping("/reports")
@@ -96,5 +101,15 @@ public class s3Controller {
 
 
 		return response;
+	}
+	
+	@PostMapping("/postData")
+	public void postDatatoDB(@RequestBody reportEntity data) {
+		reportSer.saveData(data);
+	}
+	
+	@GetMapping("/getData")
+	public List<reportEntity> getDatatoDB() {
+		return reportSer.retrieveData();
 	}
 }
