@@ -117,7 +117,7 @@ public class jenkinsServiceImpl implements jenkinsService {
 
 	private String waitForBuildCompletion(String buildNumber, String authHeaderValue) {
 		try {
-			String apiUrl = jenkinsurl + "/job/kor/" + buildNumber + "/api/json";
+			String apiUrl = jenkinsurl + "/job/s3-policies/" + buildNumber + "/api/json";
 			HttpHeaders headers = new HttpHeaders();
 			headers.set("Authorization", authHeaderValue);
 
@@ -200,7 +200,7 @@ public class jenkinsServiceImpl implements jenkinsService {
 //		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 //		headers.setBasicAuth(base64Creds);
 //		
-//		String Jenkinsurl = jenkinsurl + "/job/kor" + "/build?token=" + token;
+//		String Jenkinsurl = jenkinsurl + "/job/s3-policies" + "/build?token=" + token;
 //		ResponseEntity<JsonNode> response = restTemplate.postForEntity(Jenkinsurl,
 //				new HttpEntity<>(headers), JsonNode.class);
 //		String locationHeader = response.getHeaders().getFirst("Location");
@@ -273,3 +273,5 @@ public class jenkinsServiceImpl implements jenkinsService {
 //	}
 //
 //}
+
+
