@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: s3-application
-  namespace: s3
+  name: aws-application
+  namespace: aws
   labels:
-    app: s3-application
+    app: aws-application
 spec:
   selector:
     matchLabels:
-      app: s3-application
+      app: aws-application
   template:
     metadata:
       labels:
-        app: s3-application
+        app: aws-application
     spec:
       containers:
-      - name: s3-application
-        image: 10.63.20.34:80/s3:latest
+      - name: aws-application
+        image: 10.63.20.34:80/aws-volume-report:latest
         ports:
         - containerPort: 8080
       imagePullSecrets:
