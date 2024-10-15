@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aws-application
+  namespace: aws
+  labels:
+    app: aws-application
+spec:
+  selector:
+    matchLabels:
+      app: aws-application
+  template:
+    metadata:
+      labels:
+        app: aws-application
+    spec:
+      containers:
+      - name: aws-application
+        image: 10.63.20.34:80/aws-volume-report:latest
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: regcred
