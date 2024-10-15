@@ -41,14 +41,22 @@ public class awsServiceImpl implements awsService {
 		}
 		else {
 			awsEntity curr_report = report.get();
+			curr_report.setMachineId(data.getMachineId());
 			curr_report.setMachineIp(data.getMachineIp());
-			curr_report.setMachineName(data.getMachineName());
-			curr_report.setOccupiedPercentage(data.getOccupiedPercentage());
-			curr_report.setVolume(data.getVolume());
 			curr_report.setRecommendation(data.getRecommendation());
+			curr_report.setStorageAllocated(data.getStorageAllocated());
+			curr_report.setStorageUtilized(data.getStorageUtilized());
+			curr_report.setUtilizationPercentage(data.getUtilizationPercentage());
 			awsRepo.save(curr_report);
 		}
 		return "Data Added Successfully";
+	}
+
+
+	@Override
+	public String deleteAll() {
+		awsRepo.deleteAll();
+		return "Successfully Deleted All the Data in the table";
 	}
 
 	

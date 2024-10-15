@@ -14,6 +14,8 @@ public interface awsService {
 
 	String saveReport(awsEntity data);
 
+	String deleteAll();
+
 	
 
 }

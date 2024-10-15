@@ -16,13 +16,15 @@ public class awsEntity {
 
 	private String volumeId;
 	
-	private String machineName;
+	private String machineId;
 	
 	private String machineIp;
 	
-	private String volume;
+	private String storageAllocated;
 	
-	private String occupiedPercentage;
+	private String storageUtilized;
+	
+	private String utilizationPercentage;
 	
 	private String recommendation;
 
@@ -30,25 +32,28 @@ public class awsEntity {
 		super();
 	}
 
-	public awsEntity(String recommendation,String volumeId, String machineName, String machineIp, String volume, String occupiedPercentage) {
+	public awsEntity(String volumeId, String machineId, String machineIp, String storageAllocated,
+			String storageUtilized, String utilizationPercentage, String recommendation) {
 		super();
 		this.volumeId = volumeId;
-		this.machineName = machineName;
+		this.machineId = machineId;
 		this.machineIp = machineIp;
-		this.volume = volume;
-		this.occupiedPercentage = occupiedPercentage;
+		this.storageAllocated = storageAllocated;
+		this.storageUtilized = storageUtilized;
+		this.utilizationPercentage = utilizationPercentage;
 		this.recommendation = recommendation;
 	}
 
-	public awsEntity(int id, String volumeId, String machineName, String machineIp, String volume,
-			String occupiedPercentage,String recommendation) {
+	public awsEntity(int id, String volumeId, String machineId, String machineIp, String storageAllocated,
+			String storageUtilized, String utilizationPercentage, String recommendation) {
 		super();
 		this.id = id;
 		this.volumeId = volumeId;
-		this.machineName = machineName;
+		this.machineId = machineId;
 		this.machineIp = machineIp;
-		this.volume = volume;
-		this.occupiedPercentage = occupiedPercentage;
+		this.storageAllocated = storageAllocated;
+		this.storageUtilized = storageUtilized;
+		this.utilizationPercentage = utilizationPercentage;
 		this.recommendation = recommendation;
 	}
 
@@ -68,12 +73,12 @@ public class awsEntity {
 		this.volumeId = volumeId;
 	}
 
-	public String getMachineName() {
-		return machineName;
+	public String getMachineId() {
+		return machineId;
 	}
 
-	public void setMachineName(String machineName) {
-		this.machineName = machineName;
+	public void setMachineId(String machineId) {
+		this.machineId = machineId;
 	}
 
 	public String getMachineIp() {
@@ -84,20 +89,28 @@ public class awsEntity {
 		this.machineIp = machineIp;
 	}
 
-	public String getVolume() {
-		return volume;
+	public String getStorageAllocated() {
+		return storageAllocated;
 	}
 
-	public void setVolume(String volume) {
-		this.volume = volume;
+	public void setStorageAllocated(String storageAllocated) {
+		this.storageAllocated = storageAllocated;
 	}
 
-	public String getOccupiedPercentage() {
-		return occupiedPercentage;
+	public String getStorageUtilized() {
+		return storageUtilized;
 	}
 
-	public void setOccupiedPercentage(String occupiedPercentage) {
-		this.occupiedPercentage = occupiedPercentage;
+	public void setStorageUtilized(String storageUtilized) {
+		this.storageUtilized = storageUtilized;
+	}
+
+	public String getUtilizationPercentage() {
+		return utilizationPercentage;
+	}
+
+	public void setUtilizationPercentage(String utilizationPercentage) {
+		this.utilizationPercentage = utilizationPercentage;
 	}
 
 	public String getRecommendation() {
@@ -110,12 +123,12 @@ public class awsEntity {
 
 	@Override
 	public String toString() {
-		return "awsEntity [id=" + id + ", volumeId=" + volumeId + ", machineName=" + machineName + ", machineIp="
-				+ machineIp + ", volume=" + volume + ", occupiedPercentage=" + occupiedPercentage + ", recommendation="
-				+ recommendation + "]";
+		return "awsEntity [id=" + id + ", volumeId=" + volumeId + ", machineId=" + machineId + ", machineIp="
+				+ machineIp + ", storageAllocated=" + storageAllocated + ", storageUtilized=" + storageUtilized
+				+ ", utilizationPercentage=" + utilizationPercentage + ", recommendation=" + recommendation + "]";
 	}
 
 	
-
+	
 	
 }
