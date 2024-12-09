@@ -1,0 +1,7 @@
+/home/ubuntu/srinivas/contact/contactapi/src/main/java/io/getarrays/contactapi/domain/Contact.java
+/home/ubuntu/srinivas/contact/contactapi/src/main/java/io/getarrays/contactapi/resource/ContactResource.java
+/home/ubuntu/srinivas/contact/contactapi/src/main/java/io/getarrays/contactapi/Application.java
+/home/ubuntu/srinivas/contact/contactapi/src/main/java/io/getarrays/contactapi/config/CorsConfig.java
+/home/ubuntu/srinivas/contact/contactapi/src/main/java/io/getarrays/contactapi/repo/ContactRepo.java
+/home/ubuntu/srinivas/contact/contactapi/src/main/java/io/getarrays/contactapi/constant/Constant.java
+/home/ubuntu/srinivas/contact/contactapi/src/main/java/io/getarrays/contactapi/service/ContactService.java
