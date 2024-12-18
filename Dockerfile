@@ -2,7 +2,8 @@ FROM openjdk:11
 
 EXPOSE 8080
 
-ADD target/ARMetrics-0.0.1-SNAPSHOT.jar ARMetrics-0.0.1-SNAPSHOT.jar
+ADD target/tokenizer-0.0.1-SNAPSHOT.jar tokenizer-0.0.1-SNAPSHOT.jar
+ADD token_counter.py token_counter.py
 
-ENTRYPOINT [ "java","-jar","ARMetrics-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT [ "java","-jar","tokenizer-0.0.1-SNAPSHOT.jar"]
 

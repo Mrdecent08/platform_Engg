@@ -109,7 +109,6 @@ public class tokenizerServiceImpl implements tokenizerService{
 	@Override
 	public void updateTokens(String projectName, String prompt) {
 		double tokens = calculateTokens(prompt);
-		System.out.println("--------- " + prompt + "-----------" + tokens);
 		Optional<Budgets> budgets = tokenizerRepository.findByProjectName(projectName);
 		if(budgets.isEmpty()) {
 			throw new NoProjectFoundException("No Project With Name : "+ projectName);
@@ -129,7 +128,17 @@ public class tokenizerServiceImpl implements tokenizerService{
 
 	@Override
 	public Budgets saveProject(Budgets project) {
-		return tokenizerRepository.save(project);
+		
+		Optional<Budgets> currProject = tokenizerRepository.findByProjectName(project.getProjectName());
+		if(currProject.isEmpty()) {
+			project.setRemainingTokens(project.getTokenLimit());
+			return tokenizerRepository.save(project);
+		}
+		Budgets newProject = currProject.get();
+		newProject.setbudget(project.getbudget());
+		newProject.setTokenLimit(project.getTokenLimit());
+		newProject.setRemainingTokens(currProject.get().getRemainingTokens()+project.getTokenLimit()-currProject.get().getTokenLimit());
+		return tokenizerRepository.save(newProject);
 	}
 
 	@Override

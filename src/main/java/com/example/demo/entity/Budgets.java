@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.v3.oas.annotations.Hidden;
 
 @Entity
@@ -20,7 +22,6 @@ public class Budgets {
 	
 	private int budget;
 	
-	@Hidden
 	private double remainingTokens;
 
 	public Budgets() {
@@ -32,7 +33,7 @@ public class Budgets {
 		this.projectName = projectName;
 		this.tokenLimit = tokenLimit;
 		this.budget = budget;
-		this.remainingTokens = tokenLimit;
+		this.remainingTokens = remainingTokens;
 	}
 
 	public Budgets(int id, String projectName, double tokenLimit, int budget, double remainingTokens) {
@@ -41,7 +42,7 @@ public class Budgets {
 		this.projectName = projectName;
 		this.tokenLimit = tokenLimit;
 		this.budget = budget;
-		this.remainingTokens = tokenLimit;
+		this.remainingTokens = remainingTokens;
 	}
 
 	public int getId() {
