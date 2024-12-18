@@ -101,6 +101,7 @@ public class tokenizerServiceImpl implements tokenizerService{
 			throw new TokenLimitExceeded("Token Limit Exceeded !! ");
 		}
 		budgets.get().setRemainingTokens(remainingTokens-tokens);
+		tokenizerRepository.save(budgets.get());
 		JSONObject jsonObject = new JSONObject(generateResponse(model, prompt));
 		return jsonObject.getString("response").toString();
 	}
@@ -117,6 +118,7 @@ public class tokenizerServiceImpl implements tokenizerService{
 			throw new TokenLimitExceeded("Token Limit Exceeded !! ");
 		}
 		budgets.get().setRemainingTokens(remainingTokens-tokens);
+		tokenizerRepository.save(budgets.get());
 	}
 	
 	@Override

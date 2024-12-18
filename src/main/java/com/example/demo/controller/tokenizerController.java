@@ -29,7 +29,7 @@ public class tokenizerController {
         }
 
         @GetMapping("/tokens")
-        private void updateTokens(@RequestBody String requestBody) {
+        private void updateTokens(String requestBody) {
         	JSONObject jsonObject = new JSONObject(requestBody);
             tokenizerService.updateTokens(jsonObject.get("projectName").toString(),jsonObject.get("prompt").toString());
         }
