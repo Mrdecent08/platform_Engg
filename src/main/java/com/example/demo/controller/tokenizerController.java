@@ -27,7 +27,7 @@ public class tokenizerController {
         @PostMapping("/model")
         private String queryModel(@RequestBody String requestBody) {
                 JSONObject jsonObject = new JSONObject(requestBody);
-                return tokenizerService.queryModel(jsonObject.get("model").toString(),jsonObject.get("prompt").toString());
+                return tokenizerService.queryModel(jsonObject.get("projectName").toString(),jsonObject.get("model").toString(),jsonObject.get("prompt").toString());
         }
 
 }

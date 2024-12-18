@@ -12,7 +12,7 @@ public interface tokenizerService {
 
 	double calculateTokens(String query);
 
-	String queryModel(String model,String prompt);
+	String queryModel(String projectName,String model,String prompt);
 
 	
 

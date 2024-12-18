@@ -2,7 +2,9 @@ package com.example.demo.service.serviceImpl;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Optional;
 
+import org.json.JSONObject;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -11,7 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.example.demo.entity.Budgets;
 import com.example.demo.exception.FailedToExecuteTokens;
+import com.example.demo.exception.NoProjectFoundException;
+import com.example.demo.exception.TokenLimitExceeded;
 import com.example.demo.repository.tokenizerRepository;
 import com.example.demo.service.tokenizerService;
 
@@ -84,10 +89,21 @@ public class tokenizerServiceImpl implements tokenizerService{
 
 
 	@Override
-	public String queryModel(String model, String prompt) {
-		
-		return generateResponse(model, prompt);
+	public String queryModel(String projectName,String model, String prompt) {
+		JSONObject jsonObject = new JSONObject(generateResponse(model, prompt));
+		double tokens = calculateTokens(prompt);
+		Optional<Budgets> budgets = tokenizerRepository.findByPorjectName(projectName);
+		if(budgets.isEmpty()) {
+			throw new NoProjectFoundException("No Project With Name : "+ projectName);
+		}		
+		double remainingTokens =  budgets.get().getRemainingTokens();
+		if(remainingTokens < tokens) {
+			throw new TokenLimitExceeded("Token Limit Exceeded !! ");
+		}
+		budgets.get().setRemainingTokens(remainingTokens-tokens);
+		return jsonObject.getString("response").toString();
 	}
-	
-	
+
 }
+	
+	

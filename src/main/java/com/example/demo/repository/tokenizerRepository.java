@@ -10,6 +10,8 @@ import com.example.demo.entity.Budgets;
 @Repository
 public interface tokenizerRepository extends JpaRepository<Budgets, Integer>{
 
+	Optional<Budgets> findByPorjectName(String projectName);
+
 	
 
 
