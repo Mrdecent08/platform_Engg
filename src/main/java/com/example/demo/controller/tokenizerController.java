@@ -12,21 +12,22 @@ import com.example.demo.service.tokenizerService;
 @RestController
 public class tokenizerController {
 
-	private tokenizerService tokenizerService;
+        private tokenizerService tokenizerService;
 
-	public tokenizerController(com.example.demo.service.tokenizerService tokenizerService) {
-		super();
-		this.tokenizerService = tokenizerService;
-	}
-	
-	@GetMapping("/calculateTokens")
-	private double calculateTokens(String query) {
-		return tokenizerService.calculateTokens(query);
-	}
-	
-	@PostMapping("/model")
-	private String queryModel(@RequestBody JSONObject requestBody) {
-		return tokenizerService.queryModel(requestBody);
-	}
-	
+        public tokenizerController(com.example.demo.service.tokenizerService tokenizerService) {
+                super();
+                this.tokenizerService = tokenizerService;
+        }
+
+        @GetMapping("/calculateTokens")
+        private double calculateTokens(String query) {
+                return tokenizerService.calculateTokens(query);
+        }
+
+        @PostMapping("/model")
+        private String queryModel(@RequestBody String requestBody) {
+                JSONObject jsonObject = new JSONObject(requestBody);
+                return tokenizerService.queryModel(jsonObject.get("model").toString(),jsonObject.get("prompt").toString());
+        }
+
 }

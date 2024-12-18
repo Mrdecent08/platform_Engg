@@ -12,7 +12,7 @@ public interface tokenizerService {
 
 	double calculateTokens(String query);
 
-	String queryModel(JSONObject requestBody);
+	String queryModel(String model,String prompt);
 
 	
 

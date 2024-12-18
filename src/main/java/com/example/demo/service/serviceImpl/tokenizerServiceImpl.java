@@ -1,11 +1,15 @@
 package com.example.demo.service.serviceImpl;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
-import org.json.JSONObject;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.exception.FailedToExecuteTokens;
 import com.example.demo.repository.tokenizerRepository;
@@ -16,12 +20,32 @@ public class tokenizerServiceImpl implements tokenizerService{
 
 	private tokenizerRepository tokenizerRepository;
 	
+	private RestTemplate restTemplate = new RestTemplate();
 	
 	public tokenizerServiceImpl(com.example.demo.repository.tokenizerRepository tokenizerRepository) {
 		super();
 		this.tokenizerRepository = tokenizerRepository;
 	}
 
+	 public String generateResponse(String model, String prompt) {
+        String url = "http://10.63.20.98:32441/api/generate";
+
+        String payload = String.format("{\"model\":\"%s\",\"prompt\":\"%s\",\"stream\":false}", model, prompt);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<String> entity = new HttpEntity<>(payload, headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(
+                url,
+                HttpMethod.POST,
+                entity,
+                String.class
+        );
+
+        return response.getBody();
+	 }
 
 	@Override
 	public double calculateTokens(String query) {
@@ -60,9 +84,9 @@ public class tokenizerServiceImpl implements tokenizerService{
 
 
 	@Override
-	public String queryModel(JSONObject requestBody) {
-		System.out.println();
-		return null;
+	public String queryModel(String model, String prompt) {
+		
+		return generateResponse(model, prompt);
 	}
 	
 	
