@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ar-metrics
+  namespace: ar
+  labels:
+    app: ar-metrics
+spec:
+  selector:
+    matchLabels:
+      app: ar-metrics
+  template:
+    metadata:
+      labels:
+        app: ar-metrics
+    spec:
+      containers:
+      - name: ar-metrics
+        image: 10.63.16.153:32003/ar_metrics:latest
+        ports:
+        - containerPort: 8080
