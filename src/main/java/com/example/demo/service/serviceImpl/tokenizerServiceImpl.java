@@ -109,6 +109,7 @@ public class tokenizerServiceImpl implements tokenizerService{
 	@Override
 	public void updateTokens(String projectName, String prompt) {
 		double tokens = calculateTokens(prompt);
+		System.out.println("--------- " + prompt + "-----------" + tokens);
 		Optional<Budgets> budgets = tokenizerRepository.findByProjectName(projectName);
 		if(budgets.isEmpty()) {
 			throw new NoProjectFoundException("No Project With Name : "+ projectName);
