@@ -2,6 +2,7 @@ package com.example.demo.service.serviceImpl;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.List;
 import java.util.Optional;
 
 import org.json.JSONObject;
@@ -90,9 +91,8 @@ public class tokenizerServiceImpl implements tokenizerService{
 
 	@Override
 	public String queryModel(String projectName,String model, String prompt) {
-		JSONObject jsonObject = new JSONObject(generateResponse(model, prompt));
 		double tokens = calculateTokens(prompt);
-		Optional<Budgets> budgets = tokenizerRepository.findByPorjectName(projectName);
+		Optional<Budgets> budgets = tokenizerRepository.findByProjectName(projectName);
 		if(budgets.isEmpty()) {
 			throw new NoProjectFoundException("No Project With Name : "+ projectName);
 		}		
@@ -101,8 +101,48 @@ public class tokenizerServiceImpl implements tokenizerService{
 			throw new TokenLimitExceeded("Token Limit Exceeded !! ");
 		}
 		budgets.get().setRemainingTokens(remainingTokens-tokens);
+		JSONObject jsonObject = new JSONObject(generateResponse(model, prompt));
 		return jsonObject.getString("response").toString();
 	}
+	
+	@Override
+	public void updateTokens(String projectName, String prompt) {
+		double tokens = calculateTokens(prompt);
+		Optional<Budgets> budgets = tokenizerRepository.findByProjectName(projectName);
+		if(budgets.isEmpty()) {
+			throw new NoProjectFoundException("No Project With Name : "+ projectName);
+		}		
+		double remainingTokens =  budgets.get().getRemainingTokens();
+		if(remainingTokens < tokens) {
+			throw new TokenLimitExceeded("Token Limit Exceeded !! ");
+		}
+		budgets.get().setRemainingTokens(remainingTokens-tokens);
+	}
+	
+	@Override
+	public List<Budgets> getAllProjects() {
+		return tokenizerRepository.findAll();
+	}
+
+	@Override
+	public Budgets saveProject(Budgets project) {
+		return tokenizerRepository.save(project);
+	}
+
+	@Override
+	public Budgets updateProject(Budgets project) {
+		Optional<Budgets> currProject = tokenizerRepository.findByProjectName(project.getProjectName());
+		if(currProject.isEmpty()) {
+			throw new NoProjectFoundException("No Project Found !!!");
+		}
+		Budgets newProject = currProject.get();
+		newProject.setbudget(project.getbudget());
+		newProject.setTokenLimit(project.getTokenLimit());
+		newProject.setRemainingTokens(currProject.get().getRemainingTokens()+project.getTokenLimit()-currProject.get().getTokenLimit());
+		return tokenizerRepository.save(newProject);
+	}
+
+	
 
 }
 	
