@@ -137,6 +137,7 @@ public class tokenizerServiceImpl implements tokenizerService{
 		Budgets newProject = currProject.get();
 		newProject.setbudget(project.getbudget());
 		newProject.setTokenLimit(project.getTokenLimit());
+		System.out.println(currProject.get().getRemainingTokens()+ "---" + project.getTokenLimit() + "---" + currProject.get().getTokenLimit());
 		newProject.setRemainingTokens(currProject.get().getRemainingTokens()+project.getTokenLimit()-currProject.get().getTokenLimit());
 		return tokenizerRepository.save(newProject);
 	}
@@ -147,6 +148,7 @@ public class tokenizerServiceImpl implements tokenizerService{
 		if(currProject.isEmpty()) {
 			throw new NoProjectFoundException("No Project Found !!!");
 		}
+		System.out.println(currProject.get().getRemainingTokens()+ "---" + project.getTokenLimit() + "---" + currProject.get().getTokenLimit());
 		Budgets newProject = currProject.get();
 		newProject.setbudget(project.getbudget());
 		newProject.setTokenLimit(project.getTokenLimit());

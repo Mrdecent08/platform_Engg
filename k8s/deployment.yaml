@@ -1,21 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ar-metrics
-  namespace: ar
+  name: tokenizer
+  namespace: tokenizer
   labels:
-    app: ar-metrics
+    app: tokenizer
 spec:
   selector:
     matchLabels:
-      app: ar-metrics
+      app: tokenizer
   template:
     metadata:
       labels:
-        app: ar-metrics
+        app: tokenizer
     spec:
       containers:
-      - name: ar-metrics
-        image: 10.63.16.153:32003/ar_metrics:latest
+      - name: tokenizer
+        image: 10.63.20.34:80/tokenizer:latest
         ports:
         - containerPort: 8080
+      imagePullSecrets:
+      - name: regcred
