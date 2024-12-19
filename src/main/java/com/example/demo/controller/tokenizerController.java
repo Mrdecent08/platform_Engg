@@ -31,13 +31,13 @@ public class tokenizerController {
         @GetMapping("/tokens")
         private void updateTokens(String requestBody) {
         	JSONObject jsonObject = new JSONObject(requestBody);
-            tokenizerService.updateTokens(jsonObject.get("projectName").toString(),jsonObject.get("prompt").toString());
+            tokenizerService.updateTokens(jsonObject.get("projectName").toString(),jsonObject.get("prompt").toString(),jsonObject.get("username").toString());
         }
         
         @PostMapping("/model")
         private String queryModel(@RequestBody String requestBody) {
                 JSONObject jsonObject = new JSONObject(requestBody);
-                return tokenizerService.queryModel(jsonObject.get("projectName").toString(),jsonObject.get("model").toString(),jsonObject.get("prompt").toString());
+                return tokenizerService.queryModel(jsonObject.get("projectName").toString(),jsonObject.get("model").toString(),jsonObject.get("prompt").toString(),jsonObject.get("username").toString());
         }
         
         @GetMapping("/getProjects")

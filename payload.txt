@@ -1,0 +1,22 @@
+queryModel
+-------------
+{
+	"model" :"llama3.2",
+	"prompt":"Genarate a sample pthon program",
+	"projectName":"nextgen"
+}
+
+
+tokens
+------------
+{
+	"projectName":"nextgen",
+	"prompt":"Hi"
+}
+
+consumeservice
+--------------
+{
+	"projectName":"nextgen",
+	"service":"rag"
+}

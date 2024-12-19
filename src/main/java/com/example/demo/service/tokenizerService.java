@@ -14,7 +14,7 @@ public interface tokenizerService {
 
 	double calculateTokens(String query);
 
-	String queryModel(String projectName,String model,String prompt);
+	String queryModel(String projectName,String model,String prompt, String username);
 
 	List<Budgets> getAllProjects();
 
@@ -22,7 +22,7 @@ public interface tokenizerService {
 
 	Budgets updateProject(Budgets project);
 
-	void updateTokens(String projectName, String prompt);
+	void updateTokens(String projectName, String prompt, String username);
 
 	void updateConsumption(String projectName, String service);
 

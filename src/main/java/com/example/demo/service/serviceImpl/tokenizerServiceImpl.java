@@ -20,20 +20,25 @@ import com.example.demo.exception.NoProjectFoundException;
 import com.example.demo.exception.TokenLimitExceeded;
 import com.example.demo.repository.tokenizerRepository;
 import com.example.demo.service.tokenizerService;
+import com.example.demo.service.userService;
 
 @Service
 public class tokenizerServiceImpl implements tokenizerService{
 
 	private tokenizerRepository tokenizerRepository;
 	
-	private RestTemplate restTemplate = new RestTemplate();
+	private userService userService;
 	
-	public tokenizerServiceImpl(com.example.demo.repository.tokenizerRepository tokenizerRepository) {
+	private RestTemplate restTemplate = new RestTemplate();
+
+	 public tokenizerServiceImpl(com.example.demo.repository.tokenizerRepository tokenizerRepository,
+			com.example.demo.service.userService userService) {
 		super();
 		this.tokenizerRepository = tokenizerRepository;
+		this.userService = userService;
 	}
 
-	 public String generateResponse(String model, String prompt) {
+	public String generateResponse(String model, String prompt) {
         String url = "http://10.63.20.98:32441/api/generate";
 
         String payload = String.format("{\"model\":\"%s\",\"prompt\":\"%s\",\"stream\":false}", model, prompt);
@@ -90,14 +95,17 @@ public class tokenizerServiceImpl implements tokenizerService{
 
 
 	@Override
-	public String queryModel(String projectName,String model, String prompt) {
+	public String queryModel(String projectName,String model, String prompt,String username) {
 		double tokens = calculateTokens(prompt);
 		Optional<Budgets> budgets = tokenizerRepository.findByProjectName(projectName);
 		if(budgets.isEmpty()) {
 			throw new NoProjectFoundException("No Project With Name : "+ projectName);
 		}		
 		double remainingTokens =  budgets.get().getRemainingTokens();
-		if(remainingTokens < tokens) {
+//		if(remainingTokens < tokens) {
+//			throw new TokenLimitExceeded("Token Limit Exceeded !! ");
+//		}
+		if(! userService.checkAvailability(username, projectName, tokens)) {
 			throw new TokenLimitExceeded("Token Limit Exceeded !! ");
 		}
 		budgets.get().setRemainingTokens(remainingTokens-tokens);
@@ -109,14 +117,17 @@ public class tokenizerServiceImpl implements tokenizerService{
 	}
 	
 	@Override
-	public void updateTokens(String projectName, String prompt) {
+	public void updateTokens(String projectName, String prompt,String username) {
 		double tokens = calculateTokens(prompt);
 		Optional<Budgets> budgets = tokenizerRepository.findByProjectName(projectName);
 		if(budgets.isEmpty()) {
 			throw new NoProjectFoundException("No Project With Name : "+ projectName);
 		}		
 		double remainingTokens =  budgets.get().getRemainingTokens();
-		if(remainingTokens < tokens) {
+//		if(remainingTokens < tokens) {
+//			throw new TokenLimitExceeded("Token Limit Exceeded !! ");
+//		}
+		if(! userService.checkAvailability(username, projectName, tokens)) {
 			throw new TokenLimitExceeded("Token Limit Exceeded !! ");
 		}
 		budgets.get().setRemainingTokens(remainingTokens-tokens);
@@ -178,7 +189,6 @@ public class tokenizerServiceImpl implements tokenizerService{
 		
 		
 	}
-
 	
 
 }
