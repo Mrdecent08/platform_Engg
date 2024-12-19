@@ -55,7 +55,7 @@ public class tokenizerController {
         	return tokenizerService.updateProject(project);
         }
         
-        @GetMapping("/tokens")
+        @GetMapping("/consumeService")
         private void consumedService(String requestBody) {
         	JSONObject jsonObject = new JSONObject(requestBody);
             tokenizerService.updateConsumption(jsonObject.get("projectName").toString(),jsonObject.get("service").toString());
