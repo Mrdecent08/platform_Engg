@@ -24,6 +24,8 @@ public interface tokenizerService {
 
 	void updateTokens(String projectName, String prompt);
 
+	void updateConsumption(String projectName, String service);
+
 	
 
 }

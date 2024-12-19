@@ -101,7 +101,7 @@ public class tokenizerServiceImpl implements tokenizerService{
 			throw new TokenLimitExceeded("Token Limit Exceeded !! ");
 		}
 		budgets.get().setRemainingTokens(remainingTokens-tokens);
-		double currConsumption = budgets.get().getConsumed() - tokens*0.02;
+		double currConsumption = budgets.get().getConsumed() + tokens*0.02;
 		budgets.get().setConsumed(currConsumption);
 		tokenizerRepository.save(budgets.get());
 		JSONObject jsonObject = new JSONObject(generateResponse(model, prompt));
@@ -120,7 +120,7 @@ public class tokenizerServiceImpl implements tokenizerService{
 			throw new TokenLimitExceeded("Token Limit Exceeded !! ");
 		}
 		budgets.get().setRemainingTokens(remainingTokens-tokens);
-		double currConsumption = budgets.get().getConsumed() - tokens*0.02;
+		double currConsumption = budgets.get().getConsumed() + tokens*0.02;
 		budgets.get().setConsumed(currConsumption);
 		tokenizerRepository.save(budgets.get());
 	}
@@ -161,6 +161,25 @@ public class tokenizerServiceImpl implements tokenizerService{
 		System.out.println(newProject.getRemainingTokens());
 		return tokenizerRepository.save(newProject);
 	}
+
+	@Override
+	public void updateConsumption(String projectName, String service) {
+		Optional<Budgets> budgets = tokenizerRepository.findByProjectName(projectName);
+		if(budgets.isEmpty()) {
+			throw new NoProjectFoundException("No Project With Name : "+ projectName);
+		}		
+		if(service.equalsIgnoreCase("RAG")) {
+			double currConsumption = budgets.get().getConsumed() + 5 ;
+			if(currConsumption > budgets.get().getBudget())
+				throw new TokenLimitExceeded("No Budget Available");
+			budgets.get().setConsumed(currConsumption);
+			tokenizerRepository.save(budgets.get());
+		}
+		
+		
+	}
+
+	
 
 }
 	
