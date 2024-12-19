@@ -5,9 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import io.swagger.v3.oas.annotations.Hidden;
 
 @Entity
 public class Budgets {
@@ -22,26 +19,30 @@ public class Budgets {
 	
 	private int budget;
 	
+	private double consumed = 0;
+	
 	private double remainingTokens;
 
 	public Budgets() {
 		super();
 	}
 
-	public Budgets(String projectName, double tokenLimit, int budget, double remainingTokens) {
+	public Budgets(String projectName, double tokenLimit, int budget, double consumed, double remainingTokens) {
 		super();
 		this.projectName = projectName;
 		this.tokenLimit = tokenLimit;
 		this.budget = budget;
+		this.consumed = consumed;
 		this.remainingTokens = remainingTokens;
 	}
 
-	public Budgets(int id, String projectName, double tokenLimit, int budget, double remainingTokens) {
+	public Budgets(int id, String projectName, double tokenLimit, int budget, double consumed, double remainingTokens) {
 		super();
 		this.id = id;
 		this.projectName = projectName;
 		this.tokenLimit = tokenLimit;
 		this.budget = budget;
+		this.consumed = consumed;
 		this.remainingTokens = remainingTokens;
 	}
 
@@ -69,12 +70,20 @@ public class Budgets {
 		this.tokenLimit = tokenLimit;
 	}
 
-	public int getbudget() {
+	public int getBudget() {
 		return budget;
 	}
 
-	public void setbudget(int budget) {
+	public void setBudget(int budget) {
 		this.budget = budget;
+	}
+
+	public double getConsumed() {
+		return consumed;
+	}
+
+	public void setConsumed(double consumed) {
+		this.consumed = consumed;
 	}
 
 	public double getRemainingTokens() {
@@ -87,9 +96,10 @@ public class Budgets {
 
 	@Override
 	public String toString() {
-		return "Budgets [id=" + id + ", projectName=" + projectName + ", tokenLimit=" + tokenLimit + ", budget=" + budget
-				+ ", remainingTokens=" + remainingTokens + "]";
+		return "Budgets [id=" + id + ", projectName=" + projectName + ", tokenLimit=" + tokenLimit + ", budget="
+				+ budget + ", consumed=" + consumed + ", remainingTokens=" + remainingTokens + "]";
 	}
+
 	
 	
 }

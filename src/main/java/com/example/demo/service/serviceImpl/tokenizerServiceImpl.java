@@ -101,6 +101,8 @@ public class tokenizerServiceImpl implements tokenizerService{
 			throw new TokenLimitExceeded("Token Limit Exceeded !! ");
 		}
 		budgets.get().setRemainingTokens(remainingTokens-tokens);
+		double currConsumption = budgets.get().getConsumed() - tokens*0.02;
+		budgets.get().setConsumed(currConsumption);
 		tokenizerRepository.save(budgets.get());
 		JSONObject jsonObject = new JSONObject(generateResponse(model, prompt));
 		return jsonObject.getString("response").toString();
@@ -118,6 +120,8 @@ public class tokenizerServiceImpl implements tokenizerService{
 			throw new TokenLimitExceeded("Token Limit Exceeded !! ");
 		}
 		budgets.get().setRemainingTokens(remainingTokens-tokens);
+		double currConsumption = budgets.get().getConsumed() - tokens*0.02;
+		budgets.get().setConsumed(currConsumption);
 		tokenizerRepository.save(budgets.get());
 	}
 	
@@ -134,11 +138,11 @@ public class tokenizerServiceImpl implements tokenizerService{
 			project.setRemainingTokens(project.getTokenLimit());
 			return tokenizerRepository.save(project);
 		}
+		double newLimit = currProject.get().getRemainingTokens()+project.getTokenLimit()-currProject.get().getTokenLimit();
 		Budgets newProject = currProject.get();
-		newProject.setbudget(project.getbudget());
+		newProject.setBudget(project.getBudget());
 		newProject.setTokenLimit(project.getTokenLimit());
-		System.out.println(currProject.get().getRemainingTokens()+ "---" + project.getTokenLimit() + "---" + currProject.get().getTokenLimit());
-		newProject.setRemainingTokens(currProject.get().getRemainingTokens()+project.getTokenLimit()-currProject.get().getTokenLimit());
+		newProject.setRemainingTokens(newLimit);
 		return tokenizerRepository.save(newProject);
 	}
 
@@ -148,15 +152,15 @@ public class tokenizerServiceImpl implements tokenizerService{
 		if(currProject.isEmpty()) {
 			throw new NoProjectFoundException("No Project Found !!!");
 		}
-		System.out.println(currProject.get().getRemainingTokens()+ "---" + project.getTokenLimit() + "---" + currProject.get().getTokenLimit());
+		double newLimit = currProject.get().getRemainingTokens()+project.getTokenLimit()-currProject.get().getTokenLimit();
 		Budgets newProject = currProject.get();
-		newProject.setbudget(project.getbudget());
+		newProject.setBudget(project.getBudget());
 		newProject.setTokenLimit(project.getTokenLimit());
-		newProject.setRemainingTokens(currProject.get().getRemainingTokens()+project.getTokenLimit()-currProject.get().getTokenLimit());
+		System.out.println(newLimit);
+		newProject.setRemainingTokens(newLimit);
+		System.out.println(newProject.getRemainingTokens());
 		return tokenizerRepository.save(newProject);
 	}
-
-	
 
 }
 	
