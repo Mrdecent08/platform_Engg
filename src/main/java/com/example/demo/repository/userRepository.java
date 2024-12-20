@@ -11,9 +11,9 @@ import com.example.demo.entity.Users;
 @Repository
 public interface userRepository extends JpaRepository<Users, Integer>{
 
-	Optional<Users> findByUserName(String username);
+	Optional<Users> findByUsername(String username);
 
-	Optional<Users> findByUserNameAndProjectName(String username,String projectName);
+	Optional<Users> findByUsernameAndProjectName(String username,String projectName);
 
 
 }

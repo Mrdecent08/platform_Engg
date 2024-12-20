@@ -46,7 +46,7 @@ public class userServiceImpl implements userService{
 
 	@Override
 	public Users save(Users user) {
-		Optional<Users> currUser = userRepository.findByUserName(user.getUsername());
+		Optional<Users> currUser = userRepository.findByUsername(user.getUsername());
 		if(!currUser.isEmpty()) {
 			throw new NoUserFoundException(" User Already Exists");
 		}
@@ -67,7 +67,7 @@ public class userServiceImpl implements userService{
 	
 	@Override
 	public Users updateUser(Users user) {
-		Optional<Users> currUser = userRepository.findByUserName(user.getUsername());
+		Optional<Users> currUser = userRepository.findByUsername(user.getUsername());
 		if(currUser.isEmpty()) {
 			throw new NoUserFoundException("No User Exists");
 		}
@@ -76,14 +76,14 @@ public class userServiceImpl implements userService{
 	}
 
 	public Users findUserByName(String username,String projectName) {
-		Optional<Users> user = userRepository.findByUserNameAndProjectName(username,projectName);
+		Optional<Users> user = userRepository.findByUsernameAndProjectName(username,projectName);
 		if(user.isEmpty())
 			throw new NoUserFoundException("No User With UserName " + username + "in Project " + projectName );
 		return user.get();
 	}
 	
 	public boolean checkAvailability(String username,String projectName,double tokens) {
-		Optional<Users> user = userRepository.findByUserNameAndProjectName(username,projectName);
+		Optional<Users> user = userRepository.findByUsernameAndProjectName(username,projectName);
 		double newLimit = 0;
 		if(user.isEmpty())
 			throw new NoUserFoundException("No User With UserName " + username + "in Project " + projectName );
