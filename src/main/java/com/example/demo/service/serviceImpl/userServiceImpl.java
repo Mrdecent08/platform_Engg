@@ -57,9 +57,13 @@ public class userServiceImpl implements userService{
 	@Override
 	public Users updateUser(Users user) {
 		Optional<Users> currUser = userRepository.findByUsername(user.getUsername());
+		Optional<Budgets> budget = tokenizerRepository.findByProjectName(user.getProjectName());
 		if(currUser.isEmpty()) {
 			throw new NoUserFoundException("No User Exists");
 		}
+		double newLimit = budget.get().getRemainingTokens() - user.getTokenLimit();
+		budget.get().setRemainingTokens(newLimit);
+		tokenizerRepository.save(budget.get());
 		currUser.get().setTokenLimit(user.getTokenLimit());
 		return userRepository.save(currUser.get());
 	}
