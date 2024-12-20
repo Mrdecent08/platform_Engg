@@ -1,28 +1,17 @@
 package com.example.demo.service.serviceImpl;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Optional;
 
-import org.json.JSONObject;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.entity.Budgets;
 import com.example.demo.entity.Users;
-import com.example.demo.exception.FailedToExecuteTokens;
 import com.example.demo.exception.NoProjectFoundException;
 import com.example.demo.exception.NoUserFoundException;
 import com.example.demo.exception.TokenLimitExceeded;
 import com.example.demo.repository.tokenizerRepository;
 import com.example.demo.repository.userRepository;
-import com.example.demo.service.tokenizerService;
 import com.example.demo.service.userService;
 
 @Service
@@ -54,8 +43,8 @@ public class userServiceImpl implements userService{
 		if(budget.isEmpty()) {
 			throw new NoProjectFoundException("No Project with " + user.getProjectName());
 		}
-		if(budget.get().getRemainingTokens() >= user.getLimit()) {
-			double newLimit = budget.get().getRemainingTokens() - user.getLimit();
+		if(budget.get().getRemainingTokens() >= user.getTokenLimit()) {
+			double newLimit = budget.get().getRemainingTokens() - user.getTokenLimit();
 			budget.get().setRemainingTokens(newLimit);
 			tokenizerRepository.save(budget.get());
 			return userRepository.save(user);
@@ -71,7 +60,7 @@ public class userServiceImpl implements userService{
 		if(currUser.isEmpty()) {
 			throw new NoUserFoundException("No User Exists");
 		}
-		currUser.get().setLimit(user.getLimit());
+		currUser.get().setTokenLimit(user.getTokenLimit());
 		return userRepository.save(currUser.get());
 	}
 
@@ -87,7 +76,7 @@ public class userServiceImpl implements userService{
 		double newLimit = 0;
 		if(user.isEmpty())
 			throw new NoUserFoundException("No User With UserName " + username + "in Project " + projectName );
-		if(tokens <= user.get().getLimit()-user.get().getConsumed()) {
+		if(tokens <= user.get().getTokenLimit()-user.get().getConsumed()) {
 			newLimit = user.get().getConsumed() + tokens;
 			user.get().setConsumed(newLimit);
 			userRepository.save(user.get());

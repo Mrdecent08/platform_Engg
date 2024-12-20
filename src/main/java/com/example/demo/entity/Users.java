@@ -25,20 +25,20 @@ public class Users {
 	}
 
 	
-	public Users(String username, double limit, double consumed, String projectName) {
+	public Users(String username, double tokenLimit, double consumed, String projectName) {
 		super();
 		this.username = username;
-		this.tokenLimit = limit;
+		this.tokenLimit = tokenLimit;
 		this.consumed = consumed;
 		this.projectName = projectName;
 	}
 
 
-	public Users(int id, String username, double limit, double consumed, String projectName) {
+	public Users(int id, String username, double tokenLimit, double consumed, String projectName) {
 		super();
 		this.id = id;
 		this.username = username;
-		this.tokenLimit = limit;
+		this.tokenLimit = tokenLimit;
 		this.consumed = consumed;
 		this.projectName = projectName;
 	}
@@ -64,13 +64,13 @@ public class Users {
 	}
 
 
-	public double getLimit() {
+	public double getTokenLimit() {
 		return tokenLimit;
 	}
 
 
-	public void setLimit(double limit) {
-		this.tokenLimit = limit;
+	public void setTokenLimit(double tokenLimit) {
+		this.tokenLimit = tokenLimit;
 	}
 
 
@@ -96,7 +96,7 @@ public class Users {
 
 	@Override
 	public String toString() {
-		return "Users [id=" + id + ", username=" + username + ", limit=" + tokenLimit + ", consumed=" + consumed
+		return "Users [id=" + id + ", username=" + username + ", tokenLimit=" + tokenLimit + ", consumed=" + consumed
 				+ ", projectName=" + projectName + "]";
 	}
 	
