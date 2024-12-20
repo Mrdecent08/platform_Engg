@@ -61,17 +61,23 @@ public class userServiceImpl implements userService{
 		if(currUser.isEmpty()) {
 			throw new NoUserFoundException("No User Exists");
 		}
-		double newLimit = budget.get().getRemainingTokens() - user.getTokenLimit();
-		budget.get().setRemainingTokens(newLimit);
-		tokenizerRepository.save(budget.get());
-		currUser.get().setTokenLimit(user.getTokenLimit());
-		return userRepository.save(currUser.get());
+		if(budget.get().getRemainingTokens() >= user.getTokenLimit()) {
+			double newLimit = budget.get().getRemainingTokens() - user.getTokenLimit();
+			budget.get().setRemainingTokens(newLimit);
+			tokenizerRepository.save(budget.get());
+			currUser.get().setTokenLimit(user.getTokenLimit());
+			return userRepository.save(currUser.get());
+		}
+		else {
+			throw new TokenLimitExceeded("Token Limit Exceeded !!");
+		}
+		
 	}
 
 	public Users findUserByName(String username,String projectName) {
 		Optional<Users> user = userRepository.findByUsernameAndProjectName(username,projectName);
 		if(user.isEmpty())
-			throw new NoUserFoundException("No User With UserName " + username + "in Project " + projectName );
+			throw new NoUserFoundException("No User With UserName " + username + " in Project " + projectName );
 		return user.get();
 	}
 	
